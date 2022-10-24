@@ -2,15 +2,14 @@
 class Home {
 	constructor(bw, bh) {
 		this.buttons = []
-		
-		this.buttonWidth = bw;
-		this.buttonHeight = bh;
 	}
 
 	// Call this function to add a button to the buttons list
 	// The buttons list contains infomation about every button (text, color, x-position, y-position, width, height)
 	addButton(event, text, buttonColor, textColor, x, y, w=this.buttonWidth, h=this.buttonHeight) {	
-		this.buttons.push({"text": text, "buttonColor": buttonColor, "textColor": textColor, "x": x, "y": y, "width": w, "height": h, "event": event});
+		let b = createButton(() => { switchGameState(event) })
+		b.position(x, y)
+		b.size(w, h)
 	}
 
 	// draw everything on the screen
@@ -34,7 +33,7 @@ class Home {
 			if (mX > this.buttons[i].x && mX < this.buttons[i].x+this.buttons[i].width &&
 			    mY > this.buttons[i].y && mY < this.buttons[i].y+this.buttons[i].height) {
 				console.log("here")
-				returnState = this.buttons[i].gameState;
+				returnState = this.buttons[i].event;
 			}
 		}
 		return returnState;

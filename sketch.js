@@ -22,6 +22,7 @@ function setup() {
 	standardButtonHeight = height/10;
 
 	home = new Home(standardButtonWidth, standardButtonHeight);
+
 	home.addButton("quick", "Quick Reaction", buttonColor, textColor, width/2 - (home.buttonWidth/2), 3 * (height/8));
 	home.addButton("line", "Line Tracing", buttonColor, textColor, width/2 - (home.buttonWidth/2), 4 * (height/8));
 	home.addButton("pinpoint", "Pinpoint", buttonColor, textColor, width/2 - (home.buttonWidth/2), 5 * (height/8));
@@ -43,26 +44,6 @@ function draw() {
 }
 
 function mouseClicked() {
-	let newGameState;
-	if (gameState == "home") {
-		newGameState = home.checkButtons(mouseX, mouseY)
-	} 
-	else if (gameState == "hap") {
-		newGameState = home.draw();
-	} 
-	else if (gameState == "tc") {
-		newGameState = home.draw();
-	} 
-	console.log(mouseX, mouseY, newGameState)
-	if (newGameState != "") {
-		gameState = newGameState;
-	}
+	
 }
-
-
-// drawing the holding a pencil exercise screen
-function drawHAP() {}
-
-// drawing the throwing and catching exercise screen
-function drawTC() {}
 
