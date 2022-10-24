@@ -1,5 +1,5 @@
-// finger maze exercise screen
-class fingerMazeExercise {
+// line tracing exercise screen
+class lineTracingExercise {
 	constructor() {
 		this.buttons = []
 	}

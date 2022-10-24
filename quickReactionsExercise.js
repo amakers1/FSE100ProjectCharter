@@ -1,5 +1,5 @@
-// fast reactions exercise screen
-class fastReactionsExercise {
+// quick reactions exercise screen
+class quickReactionsExercise {
 	constructor() {
 		this.buttons = []
 	}

@@ -1,5 +1,5 @@
-// turning a doorknob exercise
-class turningDoorknobExercise {
+// pinpoint exercise
+class pinpointExercise {
 	constructor() {
 		this.buttons = []
 	}
