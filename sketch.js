@@ -1,10 +1,12 @@
 // home - main menu
 // hap - holding pencil exercise
 // tc - throwing and catching exercise
-gameState = "home";
+let gameState = "home";
+
+let backgroundImg;
 
 function preload() {
-	img = loadImage('assets/laDefense.jpg');
+	backgroundImg = loadImage('assets/1280x720.png');
   }
 
 function setup() {
@@ -15,7 +17,8 @@ function setup() {
 }
 
 function draw() {
-  	background(220);
+  	// background(220);
+	image(backgroundImg, 0, 0); 
 
 	if (gameState == "home") {
 		home.draw();
