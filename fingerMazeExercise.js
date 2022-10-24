@@ -1,5 +1,5 @@
-// drawing the home screen
-class ThrowingCatchingExercise {
+// finger maze exercise screen
+class fingerMazeExercise {
 	constructor() {
 		this.buttons = []
 	}

@@ -1,5 +1,5 @@
-// drawing the home screen
-class HoldPencilExercise {
+// fast reactions exercise screen
+class fastReactionsExercise {
 	constructor() {
 		this.buttons = []
 	}
