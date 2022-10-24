@@ -1,5 +1,5 @@
 // drawing the home screen
-class ThrowingCatchingExercise {
+class QuickReaction {
 	constructor() {
 		this.buttons = []
 	}
