@@ -4,8 +4,13 @@ class quickReactionsExercise {
 		this.buttons = []
 	}
 
-	addButton(text, color, x, y, width, height) {	
-		this.buttons.push({"text": text, "color": color, "x": x, "y": y, "width": width, "height": height});
+	setupButtons() {	
+		button = createButton('Home');
+		button.position(1150, 650);
+		button.size(50,30);
+		button.style("font-family", "Bodoni");
+  		button.style("font-size", "16px");
+		button.mousePressed(home.draw);
 	}
 
 	draw() {
