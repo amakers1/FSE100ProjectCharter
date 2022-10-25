@@ -3,6 +3,7 @@
 // pinpoint - pinpoint exercise
 // quick - quick reaction exercise
 let gameState = "home";
+let exerciseStart = false;
 
 let backgroundImg;
 
@@ -20,12 +21,6 @@ function setup() {
 
 	standardButtonWidth = width/3;
 	standardButtonHeight = height/10;
-
-	home = new Home(standardButtonWidth, standardButtonHeight);
-
-	home.addButton("quick", "Quick Reaction", buttonColor, textColor, width/2 - (home.buttonWidth/2), 3 * (height/8));
-	home.addButton("line", "Line Tracing", buttonColor, textColor, width/2 - (home.buttonWidth/2), 4 * (height/8));
-	home.addButton("pinpoint", "Pinpoint", buttonColor, textColor, width/2 - (home.buttonWidth/2), 5 * (height/8));
 }
 
 function draw() {
@@ -33,13 +28,16 @@ function draw() {
 	image(backgroundImg, 0, 0); 
 
 	if (gameState == "home") {
-		home.draw();
+		home();
 	} 
-	else if (gameState == "hap") {
-		home.draw();
+	else if (gameState == "line") {
+		lineTracingExercise();
 	} 
-	else if (gameState == "tc") {
-		home.draw();
+	else if (gameState == "pinpoint") {
+		pinpointExercise.draw();
+	} 
+	else if (gameState == "quick") {
+		quickReactionsExercise();
 	} 
 }
 
