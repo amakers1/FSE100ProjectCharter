@@ -1,2 +1,3 @@
 function pinpointExercise() {
+	drawBackButton();
 }
