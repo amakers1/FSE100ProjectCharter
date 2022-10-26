@@ -8,10 +8,11 @@ function home() {
 	rect(width/2, height/2, 500, 600);
 
 	// title
-	stroke(15, 131, 176, 230);
+	stroke(secondaryColor, 230);
 	strokeWeight(3);
+	fill(10, 10, 10, 100);
 	rect(width/2, 2 * (height / 8), standardButtonWidth, standardButtonHeight*2, 50, 0, 50, 0);
-	fill(15, 131, 176, 230)
+	fill(255, 255, 255);
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
 	textSize(64);

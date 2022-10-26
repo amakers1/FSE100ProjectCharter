@@ -2,7 +2,7 @@
 // line - tracing a line exercise
 // pinpoint - pinpoint exercise
 // quick - quick reaction exercise
-let gameState = "home";
+let gameState = "line";
 let exerciseStart = false;
 
 let activeButtons = []
@@ -10,6 +10,7 @@ let activeButtons = []
 let backgroundImg;
 
 let buttonColor;
+let secondaryColor;
 let textColor;
 let standardButtonWidth;
 let standardButtonHeight;
@@ -24,6 +25,7 @@ function setup() {
 
 	standardButtonWidth = width/3;
 	standardButtonHeight = height/10;
+	secondaryColor = color(15, 131, 176);
 	buttonColor = color(43, 43, 43);
 	textColor = color(220, 220, 220);
 	buttonTextSize = "28px";
@@ -55,10 +57,10 @@ function changeGameStates(state) {
 	}
 }
 
-function drawBackButton() {
+function drawBackButton(xoffset=0, yoffset=0) {
 	let bButton = createButton("BACK")
-	bButton.position(10, 660)
-	bButton.size(100, 40)
+	bButton.position(10+xoffset, 650+yoffset)
+	bButton.size(120, 50)
 	bButton.style("background-color", buttonColor)
 	bButton.style("color", textColor)
 	bButton.style("border-width: 3px")
