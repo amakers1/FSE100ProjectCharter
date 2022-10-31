@@ -5,7 +5,7 @@ function lineTracingExercise() {
 	if (exerciseStart) {
 
 		drawLine(550, 200, 750, 300);
-		drawLine(750, 300, 575, 750);
+		drawLine(750, 300, 575, 600);
 	}
 }
 
