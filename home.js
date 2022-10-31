@@ -8,7 +8,7 @@ function home() {
 	rect(width/2, height/2, 500, 600);
 
 	// title
-	stroke(secondaryColor, 230);
+	stroke(primaryColor, 230);
 	strokeWeight(3);
 	fill(10, 10, 10, 100);
 	rect(width/2, 2 * (height / 8), standardButtonWidth, standardButtonHeight*2, 50, 0, 50, 0);

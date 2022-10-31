@@ -11,6 +11,7 @@ let backgroundImg;
 
 let buttonColor;
 let secondaryColor;
+let primaryColor;
 let textColor;
 let standardButtonWidth;
 let standardButtonHeight;
@@ -25,7 +26,8 @@ function setup() {
 
 	standardButtonWidth = width/3;
 	standardButtonHeight = height/10;
-	secondaryColor = color(15, 131, 176);
+	secondaryColor = color(20, 167, 224);
+	primaryColor = color(15, 131, 176);
 	buttonColor = color(43, 43, 43);
 	textColor = color(220, 220, 220);
 	buttonTextSize = "28px";
@@ -69,4 +71,8 @@ function drawBackButton(xoffset=0, yoffset=0) {
 	bButton.style("font-size", 24)
 	bButton.mousePressed(() => { changeGameStates("home") });
 	activeButtons.push(bButton);
+}
+
+function drawStartButton(xoffset=0, yoffset=0) {
+	
 }
