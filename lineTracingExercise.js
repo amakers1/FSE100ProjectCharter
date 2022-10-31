@@ -58,6 +58,9 @@ function drawGUI() {
 	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
 
+	// text under How To Play
+	
+
 	// draw start button
 	let sButton = createButton("START")
 	sButton.position(305, 650)
