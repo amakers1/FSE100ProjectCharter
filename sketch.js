@@ -49,8 +49,8 @@ function draw() {
 	else if (gameState == "quick") {
 		quickReactionsExercise();
 	} 
-	console.log(gameState)
 }
+
 
 function changeGameStates(state) {
 	gameState = state;

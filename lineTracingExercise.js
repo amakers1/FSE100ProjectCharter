@@ -1,22 +1,57 @@
+mouseEnteredStart = false;
+lineStrokeWeight = 15;
+
 // line tracing exercise screen
 function lineTracingExercise() {
 	drawGUI();
 
 	if (exerciseStart) {
+		drawLine(550, 200, 750, 300, primaryColor, secondaryColor);
+		drawLine(750, 300, 575, 600, primaryColor, secondaryColor);
+		drawLine(575, 600, 775, 450, primaryColor, secondaryColor);
+		drawLine(775, 450, 815, 150, primaryColor, secondaryColor);
+		drawLine(815, 150, 950, 610, primaryColor, secondaryColor);
+		drawLine(950, 610, 980, 310, primaryColor, secondaryColor);
+		drawLine(980, 310, 1150, 200, primaryColor, secondaryColor);
+		drawLine(1150, 200, 1180, 610, primaryColor, secondaryColor);
 
-		drawLine(550, 200, 750, 300);
-		drawLine(750, 300, 575, 600);
+		// start circle
+		fill(12, 166, 20);
+		stroke(15, 92, 5);
+		ellipse(550, 200, 50, 50);
+
+		// end circle
+		fill(166, 22, 12);
+		stroke(92, 10, 5);
+		ellipse(1180, 610, 50, 50);
+
+		// if mouse entered start area
+		if (dist(mouseX, mouseY, 550, 200) <= 25) {
+			mouseEnteredStart = true;
+		}
+
+		if (mouseEnteredStart) {
+			c = get(mouseX, mouseY);
+			mouseColor = color(c[0], c[1], c[2]);
+
+			if (arrayEquals(primaryColor || mouseColor == secondaryColor) {
+				console.log("inside")
+			} 
+			else {
+				console.log("outside")
+			}
+		}
 	}
 }
 
-function drawLine(x0, y0, x1, y1) {
-	fill(primaryColor);
-	stroke(secondaryColor);
-	strokeWeight(10);
+
+function drawLine(x0, y0, x1, y1, inner, outer) {
+	fill(inner);
+	stroke(outer);
+	strokeWeight(lineStrokeWeight);
 	line(x0, y0, x1, y1);
 	strokeWeight(3);
 	ellipse(x0, y0, 30, 30);
-	ellipse(x1, y1, 30, 30);
 }
 
 function drawGUI() {
