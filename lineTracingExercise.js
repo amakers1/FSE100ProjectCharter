@@ -59,7 +59,9 @@ function drawGUI() {
 	line(40, 260, width/3-20, 260);
 
 	// text under How To Play
-	
+	let s = 'The quick brown fox jumped over the lazy dog.';
+	fill(50);
+	text(s, 10, 10, 70, 80); // Text wraps within text box
 
 	// draw start button
 	let sButton = createButton("START")
