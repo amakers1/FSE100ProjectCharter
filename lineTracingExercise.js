@@ -1,5 +1,5 @@
 let mouseEnteredStart = false;
-let lineStrokeWeight = 15;
+let lineStrokeWeight = 20;
 let lineCords = [];
 let currIndexOfCenter = 0;
 
@@ -11,6 +11,8 @@ let ltStartTime;
 
 // line tracing exercise screen
 function lineTracingExercise() {
+	// console.log(activeButtons)
+
 	drawGUILineTracing();
 
 	drawLine(550, 200, 750, 300, 0);
@@ -53,7 +55,7 @@ function lineTracingExercise() {
 			if (dist(mouseX, mouseY, lineCords[currIndexOfCenter][2], lineCords[currIndexOfCenter][3]) < 30) {
 				lineCords[currIndexOfCenter][4] = true;
 				currIndexOfCenter++;
-				console.log(lineCords)
+				// console.log(lineCords)
 			}		
 		} 
 		else {
@@ -122,6 +124,9 @@ function drawLine(x0, y0, x1, y1, index) {
 }
 
 function drawGUILineTracing() {
+	// let backButtonExists = !"lineBackButton" in activeButtons
+	// if (!backButtonExists) {
+	// }
 	drawBackButton(10);
 
 	// background rectangle
