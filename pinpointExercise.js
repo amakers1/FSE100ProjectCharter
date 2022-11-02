@@ -6,12 +6,13 @@ function pinpointExercise() {
 function drawGUIPinpoint() {
 	drawBackButton(10);
 
+	xoffset = 2*width/3 - 20;
+
 	// background rectangle
 	rectMode(CORNER)
 	fill(10, 10, 10, 50);
 	stroke(15, 131, 176, 230);
-	strokeWeight(2);
-	rect( + 10, 10, width/3, height-20, 10, 10, 10, 10);
+	rect(10, 10, width/3, height-20);
 
 	// title
 	rectMode(CENTER)
@@ -23,7 +24,7 @@ function drawGUIPinpoint() {
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
 	textSize(56);
-	text("Line Tracing", width/6+10, height/8 + 10);
+	text("Pinpoint", width/6+10, height/8 + 10);
 
 
 	// background rectangle
@@ -46,11 +47,15 @@ function drawGUIPinpoint() {
 	// draw reset button
 	drawResetButton();
 	resetButton.show();
-
+	
+	// draw back button
 	drawBackButton(10);
 	backButton.show();
 }
 
-function startLineTracingGame() {
+function startPinpointGame() {
 	exerciseStart = true;
+	fill(51);
+	circle(850,350,500);
+	
 }

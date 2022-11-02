@@ -56,7 +56,7 @@ function drawGUIQuickReaction() {
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
 	textSize(56);
-	text("Line Tracing", width/6+10, height/8 + 10);
+	text("Quick Reactions", width/6+10, height/8 + 10);
 
 
 	// background rectangle
@@ -80,7 +80,22 @@ function drawGUIQuickReaction() {
 	drawBackButton(150);
 	backButton.show();
 }
+var circles = [];
 
 function startLineTracingGame() {
 	exerciseStart = true;
+	for(var i=0; i<25;i++){
+		var circle={
+			x:random(width),
+			y: random(height),
+			r: 32
+		};
+		circles.push(circle);
+	}
+
+	for(var i=0; i<circles.length; i++){
+		fill(255, 0, 150, 100);
+		noStroke();
+		ellipse(circles[i].x, circles[i].y, circles[i].r*2, circles[i].r*2);
+	}
 }
