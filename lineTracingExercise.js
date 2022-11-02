@@ -154,7 +154,7 @@ function drawGUILineTracing() {
 	rectMode(CORNER)
 	fill(10, 10, 10, 50);
 	stroke(15, 131, 176, 230);
-	rect(10, 10, width/3, height-20);
+	rect(10, 10, width/3, height-20, 10, 10, 10, 10);
 
 	// title
 	rectMode(CENTER)
@@ -193,7 +193,7 @@ function drawGUILineTracing() {
 	fill(10, 10, 10, 50);
 	stroke(primaryColor, 200);
 	strokeWeight(2);
-	rect(20, 200, width/3-20, 400);
+	rect(20, 200, width/3-20, 400, 10, 10, 10, 10);
 
 	// drawing how to play text
 	textAlign(CENTER, CENTER);

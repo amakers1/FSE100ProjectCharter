@@ -1,16 +1,50 @@
+let quickReactionState = "idle";
+let clickStartTime = 0;
+
+function mousePressed() {
+	if (gameState == "quick") {
+		if (quickReactionState == "idle") {
+			quickReactionState = "running";
+		} 
+		else if(quickReactionState == "running") {
+			quickReactionState = "over"
+		}
+	}
+}
+
 // quick reactions exercise screen
 function quickReactionsExercise() {
 	drawGUIQuickReaction();
+
+
+}
+
+function drawReactionSquare(text, innerColor, outerColor) {
+	fill(10, 10, 10, 50);
+	stroke(primaryColor, 200);
+	strokeWeight(4);
+	rect(460, 10, 800, height-20, 10, 10, 10, 10);
+
+	stroke(outerColor);
+	fill(innerColor);
+	strokeWeight(5);
+	rect(500, 50, 720, height-100, 10, 10, 10, 10);
+
+	fill(255);
+	textSize(48);
+	textAlign(CENTER, CENTER);
+	text(text, 860, height/2);
 }
 
 function drawGUIQuickReaction() {
 	drawBackButton(10);
 
 	// background rectangle
+	strokeWeight(4);
 	rectMode(CORNER)
 	fill(10, 10, 10, 50);
 	stroke(15, 131, 176, 230);
-	rect(10, 10, width/3, height-20);
+	rect(10, 10, width/3, height-20, 10, 10, 10, 10);
 
 	// title
 	rectMode(CENTER)
@@ -30,7 +64,7 @@ function drawGUIQuickReaction() {
 	fill(10, 10, 10, 50);
 	stroke(primaryColor, 200);
 	strokeWeight(2);
-	rect(20, 200, width/3-20, 400);
+	rect(20, 200, width/3-20, 400, 10, 10, 10, 10);
 
 	textStyle(NORMAL);
 	textSize(32);
@@ -42,11 +76,8 @@ function drawGUIQuickReaction() {
 	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
 
-	// draw reset button
-	drawResetButton();
-	resetButton.show();
-
-	drawBackButton(10);
+	// draw back button
+	drawBackButton(150);
 	backButton.show();
 }
 

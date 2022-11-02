@@ -2,7 +2,7 @@
 // line - tracing a line exercise
 // pinpoint - pinpoint exercise
 // quick - quick reaction exercise
-let gameState = "home";
+let gameState = "quick";
 let exerciseStart = false;
 
 let backButton;
@@ -67,6 +67,7 @@ function draw() {
 }
 
 function changeGameStates(state) {
+	resetExercise(gameState);
 	gameState = state;
 	backButton.hide();
 	lineButton.hide();
