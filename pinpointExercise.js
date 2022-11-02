@@ -41,18 +41,18 @@ function drawGUIPinpoint() {
 	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
 
-	// draw start button
-	let sButton = createButton("START")
-	sButton.position(305, 650)
-	sButton.size(120, 50)
-	sButton.style("background-color", buttonColor)
-	sButton.style("color", textColor)
-	sButton.style("border-width: 3px")
-	sButton.style("border: solid")
-	sButton.style("border-color", color(15, 131, 176))
-	sButton.style("font-size", 24)
-	sButton.mousePressed(() => { startLineTracingGame() });
-	activeButtons.push(sButton);
+	// // draw start button
+	// let sButton = createButton("START")
+	// sButton.position(305, 650)
+	// sButton.size(120, 50)
+	// sButton.style("background-color", buttonColor)
+	// sButton.style("color", textColor)
+	// sButton.style("border-width: 3px")
+	// sButton.style("border: solid")
+	// sButton.style("border-color", color(15, 131, 176))
+	// sButton.style("font-size", 24)
+	// sButton.mousePressed(() => { startLineTracingGame() });
+	// activeButtons["pinpointStart"] = sButton;
 }
 
 function startLineTracingGame() {

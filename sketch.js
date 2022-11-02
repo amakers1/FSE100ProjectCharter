@@ -2,10 +2,13 @@
 // line - tracing a line exercise
 // pinpoint - pinpoint exercise
 // quick - quick reaction exercise
-let gameState = "line";
+let gameState = "home";
 let exerciseStart = false;
 
-let activeButtons = []
+let backButton;
+let lineButton;
+let pinpointButton;
+let quickButton;
 
 let backgroundImg;
 
@@ -60,23 +63,23 @@ function draw() {
 
 function changeGameStates(state) {
 	gameState = state;
-	for (let i = 0; i < activeButtons.length; i++) {
-		activeButtons[i].hide();
-	}
+	backButton.remove();
+	lineButton.remove();
+	quickButton.remove();
+	pinpointButton.remove();
 }
 
 function drawBackButton(xoffset=0, yoffset=0) {
-	let bButton = createButton("BACK")
-	bButton.position(10+xoffset, 650+yoffset)
-	bButton.size(120, 50)
-	bButton.style("background-color", buttonColor)
-	bButton.style("color", textColor)
-	bButton.style("border-width: 3px")
-	bButton.style("border: solid")
-	bButton.style("border-color", color(15, 131, 176))
-	bButton.style("font-size", 24)
-	bButton.mousePressed(() => { changeGameStates("home") });
-	activeButtons.push(bButton);
+	let backButton = createButton("BACK")
+	backButton.position(10+xoffset, 650+yoffset)
+	backButton.size(120, 50)
+	backButton.style("background-color", buttonColor)
+	backButton.style("color", textColor)
+	backButton.style("border-width: 3px")
+	backButton.style("border: solid")
+	backButton.style("border-color", color(15, 131, 176))
+	backButton.style("font-size", 24)
+	backButton.mousePressed(() => { changeGameStates("home") });
 }
 
 function arraysEqual(array1, array2) {
