@@ -25,7 +25,7 @@ function drawGUI() {
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
 	textSize(56);
-	text("Pinpoint", width/6+10, height/8 + 10);
+	text('Pinpoint', width/6 + 10, height/8 + 10);
 
 
 	// background rectangle for How to Play
