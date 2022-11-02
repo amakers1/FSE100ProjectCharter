@@ -1,5 +1,9 @@
 function pinpointExercise() {
 	drawGUI();
+
+	circle(30,30,20);
+	fill(51);
+	
 }
 
 function drawGUI() {
@@ -21,7 +25,7 @@ function drawGUI() {
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
 	textSize(56);
-	text("Pinpoint", width/6+10, height/8 + 10);
+	text('Pinpoint', width/6 + 10, height/8 + 10);
 
 
 	// background rectangle for How to Play
@@ -41,9 +45,9 @@ function drawGUI() {
 	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
 
-	// text for under How to Play
+	// text for under How to Play ***
 	textStyle(NORMAL);
-	textSize(18);
+	textSize(32);
 	noStroke();
 	fill(primaryColor)
 	text("The goal of this game is to help toddlers with truning a doorknob. In the game the player must click on the small circle and drag it arong either to the right or left to move the bigger circle.", width/6, 230);
@@ -62,6 +66,8 @@ function drawGUI() {
 	activeButtons.push(sButton);
 }
 
-function startLineTracingGame() {
+function startPinpointGame() {
 	exerciseStart = true;
+	
+
 }
