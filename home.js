@@ -28,6 +28,7 @@ function home() {
 	lineButton.style("border-color", color(15, 131, 176))
 	lineButton.style("font-size", buttonTextSize)
 	lineButton.mousePressed(() => { changeGameStates("line") });
+	lineButton.show();
 
 	// pinpoint button
 	pinpointButton.position(width/2 - (standardButtonWidth/2), 5 * (height / 8))
@@ -39,6 +40,7 @@ function home() {
 	pinpointButton.style("border-color", color(15, 131, 176))
 	pinpointButton.style("font-size", buttonTextSize)
 	pinpointButton.mousePressed(() => { changeGameStates("pinpoint") });
+	pinpointButton.show();
 
 	// quick reaction button
 	quickButton.position(width/2 - (standardButtonWidth/2), 6 * (height / 8))
@@ -50,4 +52,5 @@ function home() {
 	quickButton.style("border-color", color(15, 131, 176))
 	quickButton.style("font-size", buttonTextSize)
 	quickButton.mousePressed(() => { changeGameStates("quick") });
+	quickButton.show();
 }

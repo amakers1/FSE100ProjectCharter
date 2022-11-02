@@ -6,13 +6,12 @@ let currIndexOfCenter = 0;
 let lineTracingScore = 0;
 let lineTracingTime = 0.0;
 let pauseLTExercise = false;
-let ltStartTime;
+let ltStartTime = 0;
 
+let startHereTextColor = [255, 255, 255];
 
 // line tracing exercise screen
 function lineTracingExercise() {
-	// console.log(activeButtons)
-
 	drawGUILineTracing();
 
 	drawLine(550, 200, 750, 300, 0);
@@ -20,8 +19,8 @@ function lineTracingExercise() {
 	drawLine(575, 600, 775, 450, 2);
 	drawLine(775, 450, 815, 150, 3);
 	drawLine(815, 150, 950, 610, 4);
-	drawLine(950, 610, 980, 310, 5);
-	drawLine(980, 310, 1150, 200, 6);
+	drawLine(950, 610, 980, 280, 5);
+	drawLine(980, 280, 1150, 200, 6);
 	drawLine(1150, 200, 1180, 610, 7);
 
 
@@ -38,41 +37,67 @@ function lineTracingExercise() {
 	// draw "Start Here" text
 	drawStartText(currIndexOfCenter);
 
-	// console.log("pause: " + pauseLTExercise + " | start: " + exerciseStart)
+	// update the timer
+	if (exerciseStart && ltStartTime > 0) {
+		lineTracingTime = (millis() - ltStartTime) / 1000;
+	}
+
+	// if the mouse entered the starting area, start the timer
+	if (dist(mouseX, mouseY, lineCords[0][0], lineCords[0][1]) <= 30 && ltStartTime == 0) {
+		ltStartTime = millis();
+	}
 
 	// if the mouse entered the starting area, start the game
 	if (dist(mouseX, mouseY, lineCords[currIndexOfCenter][0], lineCords[currIndexOfCenter][1]) <= 30) {
 		exerciseStart = true;
 		pauseLTExercise = false;
+		startHereTextColor = [0, 255, 0];
 	}
 	// if the game has started and the mouse has left the starting area
-	if (exerciseStart && !pauseLTExercise && dist(mouseX, mouseY, lineCords[currIndexOfCenter][0], lineCords[currIndexOfCenter][1]) > 30) {
+	if (exerciseStart && !pauseLTExercise && dist(mouseX, mouseY, lineCords[currIndexOfCenter][0], lineCords[currIndexOfCenter][1]) > 30) {		
 		c = get(mouseX, mouseY);
 		// if the current color at the mouse position is apart of the line (if the player is still in the line)
 		if (arrayEqualsArrays(c, lineTracingColors)) {
-			console.log("inside");
 
 			if (dist(mouseX, mouseY, lineCords[currIndexOfCenter][2], lineCords[currIndexOfCenter][3]) < 30) {
 				lineCords[currIndexOfCenter][4] = true;
-				currIndexOfCenter++;
-				// console.log(lineCords)
+				lineTracingScore++;
+				// if reached the end
+				if (dist(mouseX, mouseY, lineCords[lineCords.length-1][2], lineCords[lineCords.length-1][3]) < 30) {
+					exerciseStart = false;
+					pauseLTExercise = true;
+				} else {
+					currIndexOfCenter++;
+				}
 			}		
 		} 
+		// user left the line
 		else {
-			console.log("outside");
 			lineCords[currIndexOfCenter][4] = false;
-			currIndexOfCenter++;
-			pauseLTExercise = true;
+			pauseLTExercise = true;	
+			// if the next center is the end
+			if (currIndexOfCenter == lineCords.length-1) {
+				exerciseStart = false;
+			} else {
+				startHereTextColor = [255, 255, 255];
+				currIndexOfCenter++;
+			}
 		}
 	}
 }
 
 function drawStartText(index) {
+	// offset the text up or down so it does not obscure the line
+	offset = -40;
+	if (lineCords[index][1] > height/2) {
+		offset = 40;
+	}
+	
 	stroke(primaryColor, 230);
 	strokeWeight(3);
-	fill(255, 255, 255);
+	fill(startHereTextColor);
 	textSize(24);
-	text("Start Here", lineCords[index][0], lineCords[index][1] - 45);
+	text("Start Here", lineCords[index][0], lineCords[index][1] + offset);
 }
 
 
@@ -122,9 +147,8 @@ function drawLine(x0, y0, x1, y1, index) {
 	strokeWeight(3);
 	ellipse(x0, y0, 30, 30);
 }
-
 function drawGUILineTracing() {
-	backButton.show();
+	// backButton.show();
 
 	// background rectangle
 	rectMode(CORNER)
@@ -148,13 +172,14 @@ function drawGUILineTracing() {
 	// score and time text
 	textAlign(LEFT);
 	textSize(32);
-	text((lineTracingTime).toFixed(2), 1180, 30);
-	text(lineTracingScore, 1180, 70);
+	text(lineTracingScore, 1180, 30);
+	text((lineTracingTime).toFixed(2), 1180, 70);
 	stroke(0);
 	strokeWeight(2)
 	fill(secondaryColor);
 	text("Score:", 1070, 30);
 	text("Time:", 1070, 70);
+
 
 	// box around text
 	rectMode(CORNER)
@@ -171,6 +196,7 @@ function drawGUILineTracing() {
 	rect(20, 200, width/3-20, 400);
 
 	// drawing how to play text
+	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(32);
 	noStroke();
@@ -180,8 +206,23 @@ function drawGUILineTracing() {
 	// line under How to Play
 	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
+
+	// draw reset button
+	drawResetButton();
+	resetButton.show();
+
+	drawBackButton(10);
+	backButton.show();
 }
 
-function startLineTracingGame() {
-	exerciseStart = true;
+function resetExercise() {
+	if (gameState == "line") {
+		exerciseStart = false;
+		pauseLTExercise = false;
+		lineTracingTime = 0;
+		ltStartTime = 0;
+		lineTracingScore = 0;
+		lineCords = []
+		currIndexOfCenter = 0;
+	}
 }
