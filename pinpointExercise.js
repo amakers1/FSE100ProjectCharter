@@ -44,6 +44,19 @@ function drawGUIPinpoint() {
 	stroke(primaryColor);
 	line(xoffset + 40, 260, width/3-20, 260);
 
+	// draw start button
+	let sButton = createButton("START")
+	sButton.position(305, 650)
+	sButton.size(120, 50)
+	sButton.style("background-color", buttonColor)
+	sButton.style("color", textColor)
+	sButton.style("border-width: 3px")
+	sButton.style("border: solid")
+	sButton.style("border-color", color(15, 131, 176))
+	sButton.style("font-size", 24)
+	sButton.mousePressed(() => { startPinpointGame() });
+	activeButtons.push(sButton);
+
 	// draw reset button
 	drawResetButton();
 	resetButton.show();
@@ -52,6 +65,7 @@ function drawGUIPinpoint() {
 	backButton.show();
 }
 
-function startLineTracingGame() {
+function startPinpointGame() {
 	exerciseStart = true;
+	
 }
