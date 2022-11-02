@@ -1,5 +1,9 @@
 function pinpointExercise() {
 	drawGUI();
+
+	circle(30,30,20);
+	fill(51);
+	
 }
 
 function drawGUI() {
@@ -41,7 +45,7 @@ function drawGUI() {
 	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
 
-	// text for under How to Play
+	// text for under How to Play ***
 	textStyle(NORMAL);
 	textSize(32);
 	noStroke();
@@ -62,6 +66,8 @@ function drawGUI() {
 	activeButtons.push(sButton);
 }
 
-function startLineTracingGame() {
+function startPinpointGame() {
 	exerciseStart = true;
+	
+
 }
