@@ -42,10 +42,6 @@ function drawGUI() {
 	line(40, 260, width/3-20, 260);
 
 	// text for under How to Play
-	textStyle(NORMAL);
-	textSize(18);
-	noStroke();
-	fill(primaryColor)
 	text("The goal of this game is to help toddlers with truning a doorknob. In the game the player must click on the small circle and drag it arong either to the right or left to move the bigger circle.", width/6, 230);
 
 	// draw start button
