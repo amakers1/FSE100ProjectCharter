@@ -124,10 +124,7 @@ function drawLine(x0, y0, x1, y1, index) {
 }
 
 function drawGUILineTracing() {
-	// let backButtonExists = !"lineBackButton" in activeButtons
-	// if (!backButtonExists) {
-	// }
-	drawBackButton(10);
+	backButton.show();
 
 	// background rectangle
 	rectMode(CORNER)

@@ -19,7 +19,6 @@ function home() {
 	text("App Name", width/2, 2 * (height / 8));
 
 	// line tracing button
-	let lineButton = createButton("Line Tracing")
 	lineButton.position(width/2 - (standardButtonWidth/2), 4 * (height / 8))
 	lineButton.size(standardButtonWidth, standardButtonHeight)
 	lineButton.style("background-color", buttonColor)
@@ -31,7 +30,6 @@ function home() {
 	lineButton.mousePressed(() => { changeGameStates("line") });
 
 	// pinpoint button
-	let pinpointButton = createButton("Pinpoint")
 	pinpointButton.position(width/2 - (standardButtonWidth/2), 5 * (height / 8))
 	pinpointButton.size(standardButtonWidth, standardButtonHeight)
 	pinpointButton.style("background-color", buttonColor)
@@ -43,7 +41,6 @@ function home() {
 	pinpointButton.mousePressed(() => { changeGameStates("pinpoint") });
 
 	// quick reaction button
-	let quickButton = createButton("Quick Reaction")
 	quickButton.position(width/2 - (standardButtonWidth/2), 6 * (height / 8))
 	quickButton.size(standardButtonWidth, standardButtonHeight)
 	quickButton.style("background-color", buttonColor)
