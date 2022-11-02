@@ -1,9 +1,9 @@
 // quick reactions exercise screen
 function quickReactionsExercise() {
-	drawGUI();
+	drawGUIQuickReaction();
 }
 
-function drawGUI() {
+function drawGUIQuickReaction() {
 	drawBackButton(10);
 
 	// background rectangle

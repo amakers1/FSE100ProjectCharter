@@ -6,11 +6,12 @@ let currIndexOfCenter = 0;
 let lineTracingScore = 0;
 let lineTracingTime = 0.0;
 let pauseLTExercise = false;
+let ltStartTime;
 
 
 // line tracing exercise screen
 function lineTracingExercise() {
-	drawGUI();
+	drawGUILineTracing();
 
 	drawLine(550, 200, 750, 300, 0);
 	drawLine(750, 300, 575, 600, 1);
@@ -120,7 +121,7 @@ function drawLine(x0, y0, x1, y1, index) {
 	ellipse(x0, y0, 30, 30);
 }
 
-function drawGUI() {
+function drawGUILineTracing() {
 	drawBackButton(10);
 
 	// background rectangle
@@ -140,6 +141,24 @@ function drawGUI() {
 	textStyle(BOLDITALIC);
 	textSize(56);
 	text("Line Tracing", width/6+10, height/8 + 10);
+	
+
+	// score and time text
+	textAlign(LEFT);
+	textSize(32);
+	text((lineTracingTime).toFixed(2), 1180, 30);
+	text(lineTracingScore, 1180, 70);
+	stroke(0);
+	strokeWeight(2)
+	fill(secondaryColor);
+	text("Score:", 1070, 30);
+	text("Time:", 1070, 70);
+
+	// box around text
+	rectMode(CORNER)
+	fill(10, 10, 10, 50);
+	stroke(15, 131, 176, 230);
+	rect(1060, 0, 220, 100);
 
 
 	// background rectangle
@@ -159,12 +178,6 @@ function drawGUI() {
 	// line under How to Play
 	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
-
-	// draw score and time text
-	textSize(50);
-	text("How to play", width/6, 240);
-	text(`Score: ${lineTracingScore}`, 500, 100);
-	text(`Time: ${lineTracingTime}`, 1000, 100);
 }
 
 function startLineTracingGame() {

@@ -1,8 +1,8 @@
 function pinpointExercise() {
-	drawGUI();
+	drawGUIPinpoint();
 }
 
-function drawGUI() {
+function drawGUIPinpoint() {
 	drawBackButton(10);
 
 	// background rectangle
