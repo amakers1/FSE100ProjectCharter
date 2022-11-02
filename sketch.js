@@ -9,6 +9,7 @@ let backButton;
 let lineButton;
 let pinpointButton;
 let quickButton;
+let resetButton;
 
 let backgroundImg;
 
@@ -38,6 +39,7 @@ function setup() {
 	buttonTextSize = "28px";
 
 	backButton = createButton("BACK");
+	resetButton = createButton("RESET");
 	quickButton = createButton("Quick Reaction")
 	pinpointButton = createButton("Pinpoint")
 	lineButton = createButton("Line Tracing")
@@ -64,25 +66,48 @@ function draw() {
 	} 
 }
 
-
 function changeGameStates(state) {
 	gameState = state;
-	// console.log(backButton);
 	backButton.hide();
 	lineButton.hide();
 	quickButton.hide();
 	pinpointButton.hide();
+	resetButton.hide();
+}
+
+function resetExercise() {
+	if (gameState == "line") {
+		exerciseStart = false;
+		pauseLTExercise = false;
+		lineTracingTime = 0;
+		ltStartTime = 0;
+		lineTracingScore = 0;
+		lineCords = []
+		currIndexOfCenter = 0;
+	}
+}
+
+function drawResetButton(xoffset=0, yoffset=0) {
+	resetButton.position(305, 650)
+	resetButton.size(120, 50)
+	resetButton.style("background-color", buttonColor)
+	resetButton.style("color", textColor)
+	resetButton.style("border-width: 3px")
+	resetButton.style("border: solid")
+	resetButton.style("border-color", color(15, 131, 176))
+	resetButton.style("font-size", 24)
+	resetButton.mousePressed(() => { resetGame() });
 }
 
 function drawBackButton(xoffset=0, yoffset=0) {
-	backButton.position(10+xoffset, 650+yoffset)
-	backButton.size(120, 50)
-	backButton.style("background-color", buttonColor)
-	backButton.style("color", textColor)
-	backButton.style("border-width: 3px")
-	backButton.style("border: solid")
-	backButton.style("border-color", color(15, 131, 176))
-	backButton.style("font-size", 24)
+	backButton.position(10+xoffset, 650);
+	backButton.size(120, 50);
+	backButton.style("background-color", buttonColor);
+	backButton.style("color", textColor);
+	backButton.style("border-width: 3px");
+	backButton.style("border: solid");
+	backButton.style("border-color", color(15, 131, 176));
+	backButton.style("font-size", 24);
 	backButton.mousePressed(() => { changeGameStates("home") });
 }
 
