@@ -19,41 +19,35 @@ function home() {
 	text("App Name", width/2, 2 * (height / 8));
 
 	// line tracing button
-	let ltButton = createButton("Line Tracing")
-	ltButton.position(width/2 - (standardButtonWidth/2), 4 * (height / 8))
-	ltButton.size(standardButtonWidth, standardButtonHeight)
-	ltButton.style("background-color", buttonColor)
-	ltButton.style("color", textColor)
-	ltButton.style("border-width: 3px")
-	ltButton.style("border: solid")
-	ltButton.style("border-color", color(15, 131, 176))
-	ltButton.style("font-size", buttonTextSize)
-	ltButton.mousePressed(() => { changeGameStates("line") });
-	activeButtons.push(ltButton);
+	lineButton.position(width/2 - (standardButtonWidth/2), 4 * (height / 8))
+	lineButton.size(standardButtonWidth, standardButtonHeight)
+	lineButton.style("background-color", buttonColor)
+	lineButton.style("color", textColor)
+	lineButton.style("border-width: 3px")
+	lineButton.style("border: solid")
+	lineButton.style("border-color", color(15, 131, 176))
+	lineButton.style("font-size", buttonTextSize)
+	lineButton.mousePressed(() => { changeGameStates("line") });
 
 	// pinpoint button
-	let pButton = createButton("Pinpoint")
-	pButton.position(width/2 - (standardButtonWidth/2), 5 * (height / 8))
-	pButton.size(standardButtonWidth, standardButtonHeight)
-	pButton.style("background-color", buttonColor)
-	pButton.style("color", textColor)
-	pButton.style("border-width: 3px")
-	pButton.style("border: solid")
-	pButton.style("border-color", color(15, 131, 176))
-	pButton.style("font-size", buttonTextSize)
-	pButton.mousePressed(() => { changeGameStates("pinpoint") });
-	activeButtons.push(pButton);
+	pinpointButton.position(width/2 - (standardButtonWidth/2), 5 * (height / 8))
+	pinpointButton.size(standardButtonWidth, standardButtonHeight)
+	pinpointButton.style("background-color", buttonColor)
+	pinpointButton.style("color", textColor)
+	pinpointButton.style("border-width: 3px")
+	pinpointButton.style("border: solid")
+	pinpointButton.style("border-color", color(15, 131, 176))
+	pinpointButton.style("font-size", buttonTextSize)
+	pinpointButton.mousePressed(() => { changeGameStates("pinpoint") });
 
 	// quick reaction button
-	let qButton = createButton("Quick Reaction")
-	qButton.position(width/2 - (standardButtonWidth/2), 6 * (height / 8))
-	qButton.size(standardButtonWidth, standardButtonHeight)
-	qButton.style("background-color", buttonColor)
-	qButton.style("color", textColor)
-	qButton.style("border-width: 3px")
-	qButton.style("border: solid")
-	qButton.style("border-color", color(15, 131, 176))
-	qButton.style("font-size", buttonTextSize)
-	qButton.mousePressed(() => { changeGameStates("quick") });
-	activeButtons.push(qButton);
+	quickButton.position(width/2 - (standardButtonWidth/2), 6 * (height / 8))
+	quickButton.size(standardButtonWidth, standardButtonHeight)
+	quickButton.style("background-color", buttonColor)
+	quickButton.style("color", textColor)
+	quickButton.style("border-width: 3px")
+	quickButton.style("border: solid")
+	quickButton.style("border-color", color(15, 131, 176))
+	quickButton.style("font-size", buttonTextSize)
+	quickButton.mousePressed(() => { changeGameStates("quick") });
 }
