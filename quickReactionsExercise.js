@@ -1,43 +1,58 @@
 let quickReactionState = "idle";
 let clickStartTime = 0;
+let clickableTime = 0;
+let runningTime; 
 
-function mousePressed() {
-	if (gameState == "quick") {
-		if (quickReactionState == "idle") {
-			quickReactionState = "running";
-		} 
-		else if(quickReactionState == "running") {
-			quickReactionState = "over"
-		}
-	}
-}
+let boxStates;
 
 // quick reactions exercise screen
 function quickReactionsExercise() {
 	drawGUIQuickReaction();
+	drawReactionBox();
 
-
+	// console.log(boxStates);
+	if (millis() > clickStartTime + runningTime && quickReactionState == "running") {
+		quickReactionState = "clickable";
+		clickableTime = millis();
+	}
 }
 
-function drawReactionSquare(text, innerColor, outerColor) {
-	fill(10, 10, 10, 50);
-	stroke(primaryColor, 200);
-	strokeWeight(4);
-	rect(460, 10, 800, height-20, 10, 10, 10, 10);
-
-	stroke(outerColor);
-	fill(innerColor);
+function drawReactionBox() {
+	fill(boxStates[quickReactionState][0]);
+	stroke(boxStates[quickReactionState][1]);
 	strokeWeight(5);
 	rect(500, 50, 720, height-100, 10, 10, 10, 10);
 
 	fill(255);
 	textSize(48);
 	textAlign(CENTER, CENTER);
-	text(text, 860, height/2);
+	text(boxStates[quickReactionState][2], 860, height/2);
+}
+
+function handleInputForQuickReaction() {
+	if (quickReactionState == "idle" || quickReactionState == "over") {
+		quickReactionState = "running";
+		clickStartTime = millis();
+		runningTime = 1000 * ((Math.random() * 1) + 1);
+	} 
+	else if(quickReactionState == "running") {
+		quickReactionState = "over";
+	}
+	else if(quickReactionState == "clickable") {
+		quickReactionState = "results";
+		boxStates[quickReactionState][2] = `${Math.round(millis() - clickableTime)} ms`;
+	}
+	else if (quickReactionState == "results") {
+		quickReactionState = "idle";
+	}
 }
 
 function drawGUIQuickReaction() {
-	drawBackButton(10);
+	// background rectangle for game area
+	fill(10, 10, 10, 50);
+	stroke(primaryColor, 200);
+	strokeWeight(4);
+	rect(460, 10, 800, height-20, 10, 10, 10, 10);
 
 	// background rectangle
 	strokeWeight(4);
@@ -55,7 +70,7 @@ function drawGUIQuickReaction() {
 	fill(255, 255, 255)
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
-	textSize(56);
+	textSize(48);
 	text("Quick Reactions", width/6+10, height/8 + 10);
 
 

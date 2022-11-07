@@ -1,5 +1,5 @@
 let mouseEnteredStart = false;
-let lineStrokeWeight = 20;
+let lineStrokeWeight = 30;
 let lineCords = [];
 let currIndexOfCenter = 0;
 
@@ -115,8 +115,6 @@ function closestDistToCenter() {
 }
 
 
-
-
 function drawLine(x0, y0, x1, y1, index) {
 	// if lineCords has been created
 	if(typeof lineCords[index] !== 'undefined') {
@@ -145,11 +143,10 @@ function drawLine(x0, y0, x1, y1, index) {
 	strokeWeight(lineStrokeWeight);
 	line(x0, y0, x1, y1);
 	strokeWeight(3);
-	ellipse(x0, y0, 30, 30);
+	ellipse(x0, y0, lineStrokeWeight * 1.5, lineStrokeWeight * 1.5);
 }
-function drawGUILineTracing() {
-	// backButton.show();
 
+function drawGUILineTracing() {
 	// background rectangle
 	rectMode(CORNER)
 	fill(10, 10, 10, 50);
@@ -215,14 +212,3 @@ function drawGUILineTracing() {
 	backButton.show();
 }
 
-function resetExercise() {
-	if (gameState == "line") {
-		exerciseStart = false;
-		pauseLTExercise = false;
-		lineTracingTime = 0;
-		ltStartTime = 0;
-		lineTracingScore = 0;
-		lineCords = []
-		currIndexOfCenter = 0;
-	}
-}

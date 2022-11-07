@@ -2,7 +2,7 @@
 // line - tracing a line exercise
 // pinpoint - pinpoint exercise
 // quick - quick reaction exercise
-let gameState = "quick";
+let gameState = "home";
 let exerciseStart = false;
 
 let backButton;
@@ -38,17 +38,26 @@ function setup() {
 	textColor = color(220, 220, 220);
 	buttonTextSize = "28px";
 
-	backButton = createButton("BACK");
-	resetButton = createButton("RESET");
-	quickButton = createButton("Quick Reaction")
-	pinpointButton = createButton("Pinpoint")
-	lineButton = createButton("Line Tracing")
+	backButton = createButton("BACK").hide();
+	resetButton = createButton("RESET").hide();
+	quickButton = createButton("Quick Reaction").hide();
+	pinpointButton = createButton("Pinpoint").hide();
+	lineButton = createButton("Line Tracing").hide();
 
-
+	// initialize variables for line tracing exercise
 	lineTracingColors = [[secondaryColor[0], secondaryColor[1], secondaryColor[2], 255], [primaryColor[0], primaryColor[1], primaryColor[2], 255], [12, 166, 20, 255], [15, 92, 5, 255]];
+
+	// initialize variables for quick reaction exercise
+	boxStates = {"idle": [primaryColor, secondaryColor, "CLICK TO START"],
+					"running": [[224, 21, 18], [171, 14, 12], "WAIT UNTIL GREEN"],
+					"over": [[224, 21, 18], [171, 14, 12], "TOO SOON\nclick to try again"],
+					"clickable": [[11, 212, 21], [9, 179, 17], "CLICK NOW!"],
+					"results": [[11, 212, 21], [9, 179, 17], ""]};
+
 }
 
 function draw() {
+	console.log(quickReactionState)
   	// background(220);
 	image(backgroundImg, 0, 0); 
 
@@ -66,7 +75,25 @@ function draw() {
 	} 
 }
 
+function mousePressed() {
+	if (gameState == "quick") {
+		handleInputForQuickReaction();
+	}
+}
+
+function keyPressed() {
+	if (gameState === "quick") {
+		if (key == ' ') {
+			handleInputForQuickReaction();
+		}
+	}
+}
+
 function changeGameStates(state) {
+	if (gameState === "home" && state === "quick") {
+		setTimeout(() => { quickReactionState = "idle" }, 1);
+	}
+
 	resetExercise(gameState);
 	gameState = state;
 	backButton.hide();
@@ -74,6 +101,7 @@ function changeGameStates(state) {
 	quickButton.hide();
 	pinpointButton.hide();
 	resetButton.hide();
+
 }
 
 function resetExercise() {
@@ -85,8 +113,16 @@ function resetExercise() {
 		lineTracingScore = 0;
 		lineCords = []
 		currIndexOfCenter = 0;
+		startHereTextColor = [255, 255, 255];
+	}
+	else if (gameState === "quick") {
+		// reset the quick reaction game
+		quickReactionState = "idle";
+		
+		console.log("inside reset " + quickReactionState);
 	}
 }
+
 
 function drawResetButton(xoffset=0, yoffset=0) {
 	resetButton.position(305, 650)
@@ -97,7 +133,7 @@ function drawResetButton(xoffset=0, yoffset=0) {
 	resetButton.style("border: solid")
 	resetButton.style("border-color", color(15, 131, 176))
 	resetButton.style("font-size", 24)
-	resetButton.mousePressed(() => { resetGame() });
+	resetButton.mousePressed(() => { resetExercise() });
 }
 
 function drawBackButton(xoffset=0, yoffset=0) {
