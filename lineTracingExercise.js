@@ -5,8 +5,8 @@ let currIndexOfCenter = 0;
 
 let lineTracingScore = 0;
 let lineTracingTime = 0.0;
-let pauseLTExercise = false;
 let ltStartTime = 0;
+let pauseLTExercise = false;
 
 let startHereTextColor = [255, 255, 255];
 
@@ -123,11 +123,12 @@ function drawLine(x0, y0, x1, y1, index) {
 			fill([11, 212, 21]);
 			stroke([9, 179, 17]);
 		}
-		// it should be drawn with the default colors
+		// it should be drawn with red colors
 		else if (lineCords[index][4] == false) {
 			fill(224, 21, 18);
 			stroke(171, 14, 12);
 		}
+		// it should be drawn with the default colors
 		else if (lineCords[index][4] == undefined){
 			fill(primaryColor);
 			stroke(secondaryColor);

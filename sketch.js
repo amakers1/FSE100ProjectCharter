@@ -2,7 +2,7 @@
 // line - tracing a line exercise
 // pinpoint - pinpoint exercise
 // quick - quick reaction exercise
-let gameState = "home";
+let gameState = "pinpoint";
 let exerciseStart = false;
 
 let backButton;
@@ -10,6 +10,7 @@ let lineButton;
 let pinpointButton;
 let quickButton;
 let resetButton;
+let startButton;
 
 let backgroundImg;
 
@@ -43,6 +44,7 @@ function setup() {
 	quickButton = createButton("Quick Reaction").hide();
 	pinpointButton = createButton("Pinpoint").hide();
 	lineButton = createButton("Line Tracing").hide();
+	startButton = createButton("START").hide();
 
 	// initialize variables for line tracing exercise
 	lineTracingColors = [[secondaryColor[0], secondaryColor[1], secondaryColor[2], 255], [primaryColor[0], primaryColor[1], primaryColor[2], 255], [12, 166, 20, 255], [15, 92, 5, 255]];
@@ -57,8 +59,6 @@ function setup() {
 }
 
 function draw() {
-	console.log(quickReactionState)
-  	// background(220);
 	image(backgroundImg, 0, 0); 
 
 	if (gameState == "home") {
@@ -76,8 +76,22 @@ function draw() {
 }
 
 function mousePressed() {
-	if (gameState == "quick") {
+	if (gameState === "quick") {
 		handleInputForQuickReaction();
+	}
+	if (gameState === "pinpoint" && pinpointStart) {
+		if (dist(mouseX, mouseY, pinStartPos[0], pinStartPos[1]) < pinDiameter/2) {
+			clickedStartPin = true;
+			console.log("clicked within pin");
+		}
+	}
+}
+
+
+function mouseDragged() {
+	if (clickedStartPin) {
+		mouseAngle = -Math.atan2(mouseY - (height/2), mouseX - (2*(width/3)));
+		console.log(mouseAngle, startAngle, endAngle);
 	}
 }
 
@@ -101,6 +115,7 @@ function changeGameStates(state) {
 	quickButton.hide();
 	pinpointButton.hide();
 	resetButton.hide();
+	startButton.hide();
 
 }
 
@@ -124,8 +139,20 @@ function resetExercise() {
 }
 
 
+function drawStartButton(xoffset=0, yoffset=0) {
+	startButton.position(305+xoffset, 650+yoffset)
+	startButton.size(120, 50)
+	startButton.style("background-color", buttonColor)
+	startButton.style("color", textColor)
+	startButton.style("border-width: 3px")
+	startButton.style("border: solid")
+	startButton.style("border-color", color(15, 131, 176))
+	startButton.style("font-size", 24)
+	startButton.mousePressed(() => { pinpointStart = true; nextPins(); });
+}
+
 function drawResetButton(xoffset=0, yoffset=0) {
-	resetButton.position(305, 650)
+	resetButton.position(305+xoffset, 650+yoffset)
 	resetButton.size(120, 50)
 	resetButton.style("background-color", buttonColor)
 	resetButton.style("color", textColor)
@@ -137,7 +164,7 @@ function drawResetButton(xoffset=0, yoffset=0) {
 }
 
 function drawBackButton(xoffset=0, yoffset=0) {
-	backButton.position(10+xoffset, 650);
+	backButton.position(10+xoffset, 650+yoffset);
 	backButton.size(120, 50);
 	backButton.style("background-color", buttonColor);
 	backButton.style("color", textColor);
