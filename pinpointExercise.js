@@ -2,49 +2,84 @@ let circleDiameter = 500;
 let pinDiameter = 50;
 let pinpointStart = false;
 
-let clickedStartPin = false;
+let pinpointRotationAngle = 0;
+let pinpointRotationSpeed = 0.06;
 
-let startAngle;
-let endAngle;
-let mouseAngle;
-let pinStartPos = [];
-let pinEndPos = [];
+let pinpointScore = 0;
+let rocketsInQueue = 3;
+
+let rocketX = 450;
+let rocketVelX = 5;
+let rocketInMotion = false;
+let rocketHeight = 25;
+let rocketWidth = 100;
+
+let targetStartAngle;
+let targetAngleSpread;
+
 
 function pinpointExercise() {
+	pinpointRotationAngle += pinpointRotationSpeed;
+	if (pinpointRotationAngle > 2 * PI) {
+		pinpointRotationAngle = 0;
+	}
+
+	
 	drawGUIPinpoint();
 
-	fill(secondaryColor);
-	stroke(primaryColor);
-	ellipse(2 * (width/3), height/2, circleDiameter);
-
 	if (pinpointStart) {
+		drawRockets();
 		drawPinpointExercise();
+
+		if (rocketInMotion) {
+			rocketX += rocketVelX;
+
+			if (dist(rocketX+rocketWidth, height/2+(rocketHeight/2), 3 * (width/4), height/2) <= circleDiameter/2) {
+				
+				if (PI > pinpointRotationAngle + targetStartAngle && PI < pinpointRotationAngle + targetStartAngle + targetAngleSpread) {
+					console.log("HIT!!");
+					rocketX = 450;
+				}
+			}
+		}
 	}
 }
 
-function nextPins() {
-	startAngle = Math.random()  * PI;
-	endAngle = startAngle + (Math.random() * PI) + (PI / 2);
 
-	pinStartPos = [(circleDiameter/2) * Math.cos(startAngle) + 2 * (width/3),
-				   (circleDiameter/2) * -Math.sin(startAngle) + height/2];
-
-	pinEndPos = [(circleDiameter/2) * Math.cos(endAngle) + 2 * (width/3),
-				   (circleDiameter/2) * -Math.sin(endAngle) + height/2];
+function nextTarget() {
+	targetStartAngle = Math.random() * PI;
+	targetAngleSpread = (PI/4) + (Math.random() * PI / 2);
+	targetAngleSpread /= (pinpointScore + 1);
 }
 
+function drawRockets() {
+	fill(11, 200, 21);
+	stroke(9, 179, 17);
+	rect(rocketX, height/2, rocketWidth, rocketHeight);
+	
+	for (let i = 1; i < rocketsInQueue; i++) {
+		fill(11, 200, 21, 100);
+		stroke([9, 179, 17]);
+		rect(450, height/2 + (2 * i * rocketHeight), rocketWidth, rocketHeight);
+	}
+}
+
+
 function drawPinpointExercise() {
-	fill([11, 212, 21]);
-	stroke([9, 179, 17]);
-	ellipse(pinStartPos[0], pinStartPos[1], pinDiameter, pinDiameter);
+	translate(3 * (width/4), height/2);
+	rotate(pinpointRotationAngle);
+
+	fill(secondaryColor);
+	stroke(primaryColor);
+	ellipse(0, 0, circleDiameter);
+
 	fill(224, 21, 18);
 	stroke(171, 14, 12);
-	ellipse(pinEndPos[0], pinEndPos[1], pinDiameter, pinDiameter);
 
-	fill(primaryColor);
-	stroke(20, 20, 20, 50);
-	// arc(2 * (width/3), height/2, circleDiameter - 50, circleDiameter - 50, startAngle, endAngle, PIE);
-	arc(2 * (width/3), height/2, circleDiameter - 50, circleDiameter - 50, 0, PI/2, PIE);
+	targetStartAngle = 0;
+	targetAngleSpread = PI / 4;
+
+	arc(0, 0, circleDiameter, circleDiameter, targetStartAngle, targetStartAngle+targetAngleSpread);
 }
 
 

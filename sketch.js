@@ -2,7 +2,7 @@
 // line - tracing a line exercise
 // pinpoint - pinpoint exercise
 // quick - quick reaction exercise
-let gameState = "pinpoint";
+let gameState = "home";
 let exerciseStart = false;
 
 let backButton;
@@ -29,6 +29,7 @@ function preload() {
   }
 
 function setup() {
+	frameRate(30);
 	createCanvas(1280, 720);
 
 	standardButtonWidth = width/3;
@@ -59,6 +60,7 @@ function setup() {
 }
 
 function draw() {
+
 	image(backgroundImg, 0, 0); 
 
 	if (gameState == "home") {
@@ -79,26 +81,28 @@ function mousePressed() {
 	if (gameState === "quick") {
 		handleInputForQuickReaction();
 	}
-	if (gameState === "pinpoint" && pinpointStart) {
-		if (dist(mouseX, mouseY, pinStartPos[0], pinStartPos[1]) < pinDiameter/2) {
-			clickedStartPin = true;
-			console.log("clicked within pin");
-		}
-	}
 }
 
 
-function mouseDragged() {
-	if (clickedStartPin) {
-		mouseAngle = -Math.atan2(mouseY - (height/2), mouseX - (2*(width/3)));
-		console.log(mouseAngle, startAngle, endAngle);
-	}
-}
+// function mouseDragged() {
+// 	if (clickedStartPin) {
+// 		mouseAngle = -Math.atan2(mouseY - (height/2), mouseX - (2*(width/3)));
+// 		console.log(mouseAngle, startAngle, endAngle);
+// 	}
+// }
 
 function keyPressed() {
-	if (gameState === "quick") {
-		if (key == ' ') {
+	if (key == ' ') {
+		if (gameState === "quick") {
 			handleInputForQuickReaction();
+		}
+		else if (gameState === "pinpoint" && pinpointStart) {
+			if (!rocketInMotion) {
+				pinpointRotationSpeed = 0;
+				rocketInMotion = true;
+				rocketsInQueue -= 1;
+				launchRocket();
+			}
 		}
 	}
 }
@@ -148,7 +152,7 @@ function drawStartButton(xoffset=0, yoffset=0) {
 	startButton.style("border: solid")
 	startButton.style("border-color", color(15, 131, 176))
 	startButton.style("font-size", 24)
-	startButton.mousePressed(() => { pinpointStart = true; nextPins(); });
+	startButton.mousePressed(() => { pinpointStart = true; nextTarget(); });
 }
 
 function drawResetButton(xoffset=0, yoffset=0) {
