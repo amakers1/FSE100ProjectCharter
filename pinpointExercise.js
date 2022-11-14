@@ -24,9 +24,7 @@ function pinpointExercise() {
 		pinpointRotationAngle = 0;
 	}
 
-	
 	drawGUIPinpoint();
-<<<<<<< Updated upstream
 
 	if (pinpointStart) {
 		drawRockets();
@@ -44,10 +42,6 @@ function pinpointExercise() {
 			}
 		}
 	}
-=======
-	startPinpointGame();
-	
->>>>>>> Stashed changes
 }
 
 
