@@ -103,25 +103,53 @@ function drawGUIQuickReaction() {
     	textSize(17);
     	noStroke();
     	fill(primaryColor)
-    	text("Once you have clicked the blue box, the box will turn green.", width/6, 330);
+    	text("Once you have clicked the blue box, ", width/6, 340);
     	textAlign(CENTER, CENTER);
     	textStyle(NORMAL);
     	textSize(17);
     	noStroke();
     	fill(primaryColor)
-    	text("The goal is to click the box as fast as you can once it is green.", width/6, 360);
+		text("the box will turn green.", width/6, 370);
     	textAlign(CENTER, CENTER);
     	textStyle(NORMAL);
     	textSize(17);
     	noStroke();
     	fill(primaryColor)
-    	text(" Once you have clicked the box when it is green, it will display the time that it took you to click the box.", width/6, 390);
+    	text("The goal is to click the box as fast as you can ", width/6, 410);
+    	textAlign(CENTER, CENTER);
+    	textStyle(NORMAL);
+    	textSize(17);
+    	noStroke();
+    	fill(primaryColor)
+		text("once it is green.", width/6, 440);
+    	textAlign(CENTER, CENTER);
+    	textStyle(NORMAL);
+    	textSize(17);
+    	noStroke();
+    	fill(primaryColor)
+    	text(" Once you have clicked the box when it is green, ", width/6, 480);
 		textAlign(CENTER, CENTER);
     	textStyle(NORMAL);
     	textSize(17);
     	noStroke();
     	fill(primaryColor)
-    	text("Try to make your time as small as possible!");
+		text("it will display the time that it took you to ", width/6, 510);
+		textAlign(CENTER, CENTER);
+    	textStyle(NORMAL);
+    	textSize(17);
+    	noStroke();
+		text("click the box.", width/6, 540);
+		textAlign(CENTER, CENTER);
+    	textStyle(NORMAL);
+    	textSize(17);
+    	noStroke();
+    	fill(primaryColor)
+    	text("Try to make your time as small as possible!", width/6, 580);
+		textAlign(CENTER, CENTER);
+    	textStyle(NORMAL);
+    	textSize(17);
+    	noStroke();
+    	fill(primaryColor)
 
 	// draw back button
 	drawBackButton(150);
