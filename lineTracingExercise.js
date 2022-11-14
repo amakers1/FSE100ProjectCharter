@@ -205,6 +205,32 @@ function drawGUILineTracing() {
 	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
 
+	// instructions for game
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("Place the cursor on the starting point to start.", width/6, 300);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("   Move the cursor along the line to each checkpoint.", width/6, 330);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("Stay within the line to get points.", width/6, 360);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("Try to reach the finish as fast as you can!", width/6, 390);
+
 	// draw reset button
 	drawResetButton();
 	resetButton.show();
