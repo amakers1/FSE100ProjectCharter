@@ -12,6 +12,7 @@ let pinEndPos = [];
 
 function pinpointExercise() {
 	drawGUIPinpoint();
+<<<<<<< Updated upstream
 
 	fill(secondaryColor);
 	stroke(primaryColor);
@@ -20,6 +21,10 @@ function pinpointExercise() {
 	if (pinpointStart) {
 		drawPinpointExercise();
 	}
+=======
+	startPinpointGame();
+	
+>>>>>>> Stashed changes
 }
 
 function nextPins() {
