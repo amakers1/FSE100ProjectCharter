@@ -91,6 +91,38 @@ function drawGUIQuickReaction() {
 	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
 
+	// instructions for how to play
+	textAlign(CENTER, CENTER);
+    	textStyle(NORMAL);
+    	textSize(17);
+    	noStroke();
+    	fill(primaryColor)
+    	text("Start by clicking the blue box to the right.", width/6, 300);
+    	textAlign(CENTER, CENTER);
+    	textStyle(NORMAL);
+    	textSize(17);
+    	noStroke();
+    	fill(primaryColor)
+    	text("Once you have clicked the blue box, the box will turn green.", width/6, 330);
+    	textAlign(CENTER, CENTER);
+    	textStyle(NORMAL);
+    	textSize(17);
+    	noStroke();
+    	fill(primaryColor)
+    	text("The goal is to click the box as fast as you can once it is green.", width/6, 360);
+    	textAlign(CENTER, CENTER);
+    	textStyle(NORMAL);
+    	textSize(17);
+    	noStroke();
+    	fill(primaryColor)
+    	text(" Once you have clicked the box when it is green, it will display the time that it took you to click the box.", width/6, 390);
+		textAlign(CENTER, CENTER);
+    	textStyle(NORMAL);
+    	textSize(17);
+    	noStroke();
+    	fill(primaryColor)
+    	text("Try to make your time as small as possible!");
+
 	// draw back button
 	drawBackButton(150);
 	backButton.show();
