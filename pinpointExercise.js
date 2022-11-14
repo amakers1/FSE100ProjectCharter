@@ -26,6 +26,7 @@ function pinpointExercise() {
 
 	
 	drawGUIPinpoint();
+<<<<<<< Updated upstream
 
 	if (pinpointStart) {
 		drawRockets();
@@ -43,6 +44,10 @@ function pinpointExercise() {
 			}
 		}
 	}
+=======
+	startPinpointGame();
+	
+>>>>>>> Stashed changes
 }
 
 
