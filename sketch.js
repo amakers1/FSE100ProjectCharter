@@ -42,10 +42,10 @@ function setup() {
 
 	backButton = createButton("BACK").hide();
 	resetButton = createButton("RESET").hide();
+	startButton = createButton("START").hide();
 	quickButton = createButton("Quick Reaction").hide();
 	pinpointButton = createButton("Pinpoint").hide();
 	lineButton = createButton("Line Tracing").hide();
-	startButton = createButton("START").hide();
 
 	// initialize variables for line tracing exercise
 	lineTracingColors = [[secondaryColor[0], secondaryColor[1], secondaryColor[2], 255], [primaryColor[0], primaryColor[1], primaryColor[2], 255], [12, 166, 20, 255], [15, 92, 5, 255]];
@@ -150,7 +150,10 @@ function drawStartButton(xoffset=0, yoffset=0) {
 	startButton.style("border: solid")
 	startButton.style("border-color", color(15, 131, 176))
 	startButton.style("font-size", 24)
-	startButton.mousePressed(() => { pinpointStart = true; nextTarget(); });
+	startButton.mousePressed(() => { 
+		pinpointStart = true; 
+		pinpointStartTime = millis(); 
+		nextTarget(); });
 }
 
 function drawResetButton(xoffset=0, yoffset=0) {

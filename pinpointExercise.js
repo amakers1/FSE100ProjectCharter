@@ -6,6 +6,8 @@ let pinpointRotationAngle = 0;
 let pinpointRotationSpeed = 0.08;
 
 let pinpointScore = 0;
+let pinpointTimer = 0;
+let pinpointStartTime = 0;
 let rocketsInQueue = 3;
 
 let rocketX = 475;
@@ -25,8 +27,11 @@ function pinpointExercise() {
 	}
 
 	drawGUIPinpoint();
-
 	if (pinpointStart) {
+			// update the timer
+		if (pinpointStartTime > 0) {
+			pinpointTimer = (millis() - pinpointStartTime) / 1000;
+		}
 
 		if (rocketInMotion) {
 			rocketX += rocketVelX;
@@ -42,6 +47,7 @@ function pinpointExercise() {
 					rocketX = 475;
 					pinpointScore++;
 					rocketsInQueue++;
+					nextTarget();
 					console.log("HIT!!!!");
 				}
 				else {
@@ -119,6 +125,18 @@ function drawGUIPinpoint() {
 	textStyle(BOLDITALIC);
 	textSize(56);
 	text("Pinpoint", width/6+10, height/8 + 10);
+
+	// score and time text
+	textAlign(LEFT);
+	textSize(32);
+	text(pinpointScore, 1180, 30);
+	text((pinpointTimer).toFixed(2), 1180, 70);
+	stroke(0);
+	strokeWeight(2)
+	fill(secondaryColor);
+	text("Score:", 1070, 30);
+	text("Time:", 1070, 70);
+
 
 
 	// background rectangle
