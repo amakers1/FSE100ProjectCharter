@@ -3,13 +3,13 @@ let pinDiameter = 50;
 let pinpointStart = false;
 
 let pinpointRotationAngle = 0;
-let pinpointRotationSpeed = 0.06;
+let pinpointRotationSpeed = 0.08;
 
 let pinpointScore = 0;
 let rocketsInQueue = 3;
 
-let rocketX = 450;
-let rocketVelX = 5;
+let rocketX = 475;
+let rocketVelX = 50;
 let rocketInMotion = false;
 let rocketHeight = 25;
 let rocketWidth = 100;
@@ -27,20 +27,32 @@ function pinpointExercise() {
 	drawGUIPinpoint();
 
 	if (pinpointStart) {
-		drawRockets();
-		drawPinpointExercise();
 
 		if (rocketInMotion) {
 			rocketX += rocketVelX;
 
+			fill(11, 200, 21);
+			stroke(9, 179, 17);
+			rect(rocketX, height/2, rocketWidth, rocketHeight);
+
 			if (dist(rocketX+rocketWidth, height/2+(rocketHeight/2), 3 * (width/4), height/2) <= circleDiameter/2) {
 				
 				if (PI > pinpointRotationAngle + targetStartAngle && PI < pinpointRotationAngle + targetStartAngle + targetAngleSpread) {
-					console.log("HIT!!");
-					rocketX = 450;
+					rocketInMotion = false;
+					rocketX = 475;
+					pinpointScore++;
+					rocketsInQueue++;
+					console.log("HIT!!!!");
+				}
+				else {
+					rocketInMotion = false;
+					rocketX = 475;
+					console.log("MISS:(((((((");
 				}
 			}
 		}
+		drawRockets();
+		drawPinpointExercise();
 	}
 }
 
@@ -51,15 +63,17 @@ function nextTarget() {
 	targetAngleSpread /= (pinpointScore + 1);
 }
 
-function drawRockets() {
-	fill(11, 200, 21);
-	stroke(9, 179, 17);
-	rect(rocketX, height/2, rocketWidth, rocketHeight);
-	
-	for (let i = 1; i < rocketsInQueue; i++) {
-		fill(11, 200, 21, 100);
+function drawRockets() {	
+	alpha = 100;
+	for (let i = 0; i < rocketsInQueue; i++) {
+		if (i == 0 && !rocketInMotion) {
+			alpha = 255
+		} else {
+			alpha = 100
+		}
+		fill(11, 200, 21, alpha);
 		stroke([9, 179, 17]);
-		rect(450, height/2 + (2 * i * rocketHeight), rocketWidth, rocketHeight);
+		rect(475, height/2 + (2 * i * rocketHeight), rocketWidth, rocketHeight);
 	}
 }
 
@@ -75,8 +89,8 @@ function drawPinpointExercise() {
 	fill(224, 21, 18);
 	stroke(171, 14, 12);
 
-	targetStartAngle = 0;
-	targetAngleSpread = PI / 4;
+	// targetStartAngle = 0;
+	// targetAngleSpread = PI / 4;
 
 	arc(0, 0, circleDiameter, circleDiameter, targetStartAngle, targetStartAngle+targetAngleSpread);
 }

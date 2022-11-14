@@ -2,7 +2,7 @@
 // line - tracing a line exercise
 // pinpoint - pinpoint exercise
 // quick - quick reaction exercise
-let gameState = "home";
+let gameState = "pinpoint";
 let exerciseStart = false;
 
 let backButton;
@@ -98,10 +98,8 @@ function keyPressed() {
 		}
 		else if (gameState === "pinpoint" && pinpointStart) {
 			if (!rocketInMotion) {
-				pinpointRotationSpeed = 0;
 				rocketInMotion = true;
 				rocketsInQueue -= 1;
-				launchRocket();
 			}
 		}
 	}
