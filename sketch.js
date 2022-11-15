@@ -2,6 +2,7 @@
 // line - tracing a line exercise
 // pinpoint - pinpoint exercise
 // quick - quick reaction exercise
+let frameCount = 0;
 let gameState = "pinpoint";
 let exerciseStart = false;
 
@@ -29,7 +30,7 @@ function preload() {
   }
 
 function setup() {
-	frameRate(30);
+	// frameRate(30);
 	createCanvas(1280, 720);
 
 	standardButtonWidth = width/3;
@@ -60,6 +61,10 @@ function setup() {
 }
 
 function draw() {
+	frameCount++;
+	avgFrameRate = frameCount / (millis() / 1000);
+	console.log("Average: " + avgFrameRate);
+	console.log("Current: " + frameRate());
 
 	image(backgroundImg, 0, 0); 
 

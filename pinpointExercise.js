@@ -33,6 +33,7 @@ function pinpointExercise() {
 			pinpointTimer = (millis() - pinpointStartTime) / 1000;
 		}
 
+		// console.log(targetStartAngle, pinpointRotationAngle,  targetAngleSpread)
 		if (rocketInMotion) {
 			rocketX += rocketVelX;
 
@@ -42,6 +43,7 @@ function pinpointExercise() {
 
 			if (dist(rocketX+rocketWidth, height/2+(rocketHeight/2), 3 * (width/4), height/2) <= circleDiameter/2) {
 				
+
 				if (PI > pinpointRotationAngle + targetStartAngle && PI < pinpointRotationAngle + targetStartAngle + targetAngleSpread) {
 					rocketInMotion = false;
 					rocketX = 475;
@@ -67,6 +69,7 @@ function nextTarget() {
 	targetStartAngle = Math.random() * PI;
 	targetAngleSpread = (PI/4) + (Math.random() * PI / 2);
 	targetAngleSpread /= (pinpointScore + 1);
+	pinpointRotationAngle = targetStartAngle;	
 }
 
 function drawRockets() {	
