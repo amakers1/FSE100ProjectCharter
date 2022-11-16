@@ -1,4 +1,4 @@
-let circleDiameter = 500;
+let circleDiameter = 450;
 let pinDiameter = 50;
 let pinpointStart = false;
 
@@ -11,7 +11,7 @@ let pinpointStartTime = 0;
 let rocketsInQueue = 3;
 
 let rocketX = 475;
-let rocketVelX = 50;
+let rocketVelX = 20;
 let rocketInMotion = false;
 let rocketHeight = 25;
 let rocketWidth = 100;
@@ -21,30 +21,31 @@ let targetAngleSpread;
 
 
 function pinpointExercise() {
-	pinpointRotationAngle += pinpointRotationSpeed;
 	if (pinpointRotationAngle > 2 * PI) {
 		pinpointRotationAngle = 0;
 	}
 
 	drawGUIPinpoint();
+	drawPinpointExercise();
 	if (pinpointStart) {
-			// update the timer
+		pinpointRotationAngle += pinpointRotationSpeed;
+
+		// update the timer
 		if (pinpointStartTime > 0) {
 			pinpointTimer = (millis() - pinpointStartTime) / 1000;
 		}
 
-		// console.log(targetStartAngle, pinpointRotationAngle,  targetAngleSpread)
 		if (rocketInMotion) {
 			rocketX += rocketVelX;
-
+			
 			fill(11, 200, 21);
 			stroke(9, 179, 17);
 			rect(rocketX, height/2, rocketWidth, rocketHeight);
-
+			
+		
 			if (dist(rocketX+rocketWidth, height/2+(rocketHeight/2), 3 * (width/4), height/2) <= circleDiameter/2) {
 				
-
-				if (PI > pinpointRotationAngle + targetStartAngle && PI < pinpointRotationAngle + targetStartAngle + targetAngleSpread) {
+				if (3.1415 > pinpointRotationAngle + targetStartAngle && 3.1415 < pinpointRotationAngle + targetStartAngle + targetAngleSpread) {
 					rocketInMotion = false;
 					rocketX = 475;
 					pinpointScore++;
@@ -56,23 +57,27 @@ function pinpointExercise() {
 					rocketInMotion = false;
 					rocketX = 475;
 					console.log("MISS:(((((((");
+					if (rocketsInQueue == 0) {
+						resetExercise();
+					}
 				}
+				
 			}
 		}
-		drawRockets();
-		drawPinpointExercise();
 	}
+	drawRockets();
+
 }
 
 
 function nextTarget() {
-	targetStartAngle = Math.random() * PI;
-	targetAngleSpread = (PI/4) + (Math.random() * PI / 2);
+	targetStartAngle = map(random(), 0, 1, 0, PI);
+	targetAngleSpread = map();
 	targetAngleSpread /= (pinpointScore + 1);
 	pinpointRotationAngle = targetStartAngle;	
 }
 
-function drawRockets() {	
+function drawRockets() {
 	alpha = 100;
 	for (let i = 0; i < rocketsInQueue; i++) {
 		if (i == 0 && !rocketInMotion) {
@@ -88,20 +93,19 @@ function drawRockets() {
 
 
 function drawPinpointExercise() {
+	push();
 	translate(3 * (width/4), height/2);
 	rotate(pinpointRotationAngle);
 
 	fill(secondaryColor);
 	stroke(primaryColor);
 	ellipse(0, 0, circleDiameter);
-
-	fill(224, 21, 18);
-	stroke(171, 14, 12);
-
-	// targetStartAngle = 0;
-	// targetAngleSpread = PI / 4;
-
-	arc(0, 0, circleDiameter, circleDiameter, targetStartAngle, targetStartAngle+targetAngleSpread);
+	if (pinpointStart) {
+		fill(224, 21, 18);
+		stroke(171, 14, 12);
+		arc(0, 0, circleDiameter, circleDiameter, targetStartAngle, targetStartAngle+targetAngleSpread);
+	}
+	pop();
 }
 
 

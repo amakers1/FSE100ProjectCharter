@@ -30,7 +30,7 @@ function preload() {
   }
 
 function setup() {
-	// frameRate(30);
+	frameRate(30);
 	createCanvas(1280, 720);
 
 	standardButtonWidth = width/3;
@@ -61,10 +61,10 @@ function setup() {
 }
 
 function draw() {
-	frameCount++;
-	avgFrameRate = frameCount / (millis() / 1000);
-	console.log("Average: " + avgFrameRate);
-	console.log("Current: " + frameRate());
+	// frameCount++;
+	// avgFrameRate = frameCount / (millis() / 1000);
+	// console.log("Average: " + avgFrameRate);
+	// console.log("Current: " + frameRate());
 
 	image(backgroundImg, 0, 0); 
 
@@ -88,13 +88,6 @@ function mousePressed() {
 	}
 }
 
-
-// function mouseDragged() {
-// 	if (clickedStartPin) {
-// 		mouseAngle = -Math.atan2(mouseY - (height/2), mouseX - (2*(width/3)));
-// 		console.log(mouseAngle, startAngle, endAngle);
-// 	}
-// }
 
 function keyPressed() {
 	if (key == ' ') {
@@ -140,8 +133,16 @@ function resetExercise() {
 	else if (gameState === "quick") {
 		// reset the quick reaction game
 		quickReactionState = "idle";
-		
-		console.log("inside reset " + quickReactionState);
+	}
+	else if (gameState == "pinpoint") {
+		pinpointStartTime = 0;
+		pinpointStart = false;
+		pinpointRotationAngle = 0;
+		rocketsInQueue = 3;
+		rocketInMotion = 0;
+		rocketX = 475;
+		pinpointScore = 0;
+		pinpointTimer = 0;
 	}
 }
 
