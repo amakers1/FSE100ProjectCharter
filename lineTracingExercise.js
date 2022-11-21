@@ -199,7 +199,7 @@ function drawGUILineTracing() {
 	textSize(32);
 	noStroke();
 	fill(primaryColor)
-	text("How to play", width/6, 230);
+	text("How to play", width/6+10, 230);
 
 	// line under How to Play
 	stroke(primaryColor);
