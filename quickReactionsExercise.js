@@ -145,11 +145,7 @@ function drawGUIQuickReaction() {
     	noStroke();
     	fill(primaryColor)
     	text("Try to make your time as small as possible!", width/6, 580);
-		textAlign(CENTER, CENTER);
-    	textStyle(NORMAL);
-    	textSize(17);
-    	noStroke();
-    	fill(primaryColor)
+		
 
 	// draw back button
 	drawBackButton(150);
