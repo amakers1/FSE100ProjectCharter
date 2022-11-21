@@ -195,6 +195,91 @@ function drawGUIPinpoint() {
 	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
 
+	// instructions for how to play 
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("For this game you will need to use your space bar ", width/6, 290);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("from your keyboard. ", width/6, 310);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("Press the start button in the ", width/6, 350);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("bottom left corner of this box. ", width/6, 380);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("Once you press start the circle will start spinning. ", width/6, 420);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("When you press your space bar ", width/6, 460);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("the green rectangle on the left ", width/6, 490);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("of the circle will shoot at the circle. ", width/6, 440);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("The goal is to shoot the green rectangle ", width/6, 480);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("at the red section of the circle. ", width/6, 510);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("Everytime you hit the red section ", width/6, 550);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("of the circle successfully, ", width/6, 580);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	text("you will earn a point. ", width/6, 610);
+	textAlign(CENTER, CENTER);
+	textStyle(NORMAL);
+	textSize(17);
+	noStroke();
+	fill(primaryColor)
+	text("Good luck!", width/6, 650);
+	
 
 	if (!pinpointStart) {
 		// draw start button
