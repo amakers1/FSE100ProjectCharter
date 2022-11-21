@@ -3,17 +3,21 @@ let pinDiameter = 50;
 let pinpointStart = false;
 
 let pinpointRotationAngle = 0;
-let pinpointRotationSpeed = 0.08;
+let pinpointRotationSpeed = 0.06;
+let pinpointRotationState = [Math.sin(frameCount/30) * 0.06 + 0.01];
 
 let pinpointScore = 0;
 let pinpointTimer = 0;
 let pinpointStartTime = 0;
 let rocketsInQueue = 3;
 
-let rocketX = 475;
+let rocketX = 490;
+let rocketYs = [];
 let rocketVelX = 20;
+let rocketRotation = 2.3;
 let rocketInMotion = false;
-let rocketHeight = 25;
+let rocketShifting = false;
+let rocketHeight = 100;
 let rocketWidth = 100;
 
 let targetStartAngle;
@@ -28,7 +32,7 @@ function pinpointExercise() {
 	drawGUIPinpoint();
 	drawPinpointExercise();
 	if (pinpointStart) {
-		pinpointRotationAngle += pinpointRotationSpeed;
+		pinpointRotationAngle += Math.sin(frameCount/30) * 0.06 + 0.01;
 
 		// update the timer
 		if (pinpointStartTime > 0) {
@@ -36,26 +40,43 @@ function pinpointExercise() {
 		}
 
 		if (rocketInMotion) {
+
+			if (rocketShifting) {
+				for (let i = 0; i < rocketsInQueue; i++) {
+					rocketYs[i] -= 5;
+
+					if (rocketYs[i] <= height/2) {
+						rocketYs[i] = height/2
+						rocketShifting = false;
+					}
+				}
+			}
+
 			rocketX += rocketVelX;
 			
-			fill(11, 200, 21);
-			stroke(9, 179, 17);
-			rect(rocketX, height/2, rocketWidth, rocketHeight);
+			push()
+			imageMode(CENTER, CENTER);
+			translate(rocketX, height/2);
+			rotate(2.3 + map(random(), 0, 1, -0.01, 0.01));
+			image(rocketAsset, 0, 0, rocketWidth, rocketHeight);
+			pop();
 			
 		
-			if (dist(rocketX+rocketWidth, height/2+(rocketHeight/2), 3 * (width/4), height/2) <= circleDiameter/2) {
+			if (dist(rocketX+37, height/2, 3 * (width/4), height/2) <= circleDiameter/2) {
 				
-				if (3.1415 > pinpointRotationAngle + targetStartAngle && 3.1415 < pinpointRotationAngle + targetStartAngle + targetAngleSpread) {
+				if (pinpointRotationAngle < 3.1415 && pinpointRotationAngle + targetAngleSpread > 3.1415) {
 					rocketInMotion = false;
-					rocketX = 475;
+					rocketX = 490;
 					pinpointScore++;
 					rocketsInQueue++;
+					rocketYs.push(rocketYs.length * 50 + (height/2));
 					nextTarget();
+					setPinpointRotation();
 					console.log("HIT!!!!");
 				}
 				else {
 					rocketInMotion = false;
-					rocketX = 475;
+					rocketX = 490;
 					console.log("MISS:(((((((");
 					if (rocketsInQueue == 0) {
 						resetExercise();
@@ -69,25 +90,27 @@ function pinpointExercise() {
 
 }
 
+function setPinpointRotation() {
+	pinpointRotationSpeed = Math.sin(frameCount/60) * 0.06;
+}
+
 
 function nextTarget() {
-	targetStartAngle = map(random(), 0, 1, 0, PI);
-	targetAngleSpread = map();
-	targetAngleSpread /= (pinpointScore + 1);
-	pinpointRotationAngle = targetStartAngle;	
+	targetAngleSpread = (0.7*Math.log(1/(pinpointScore+1))+2.3) * map(random(), 0, 1, PI/4, PI/2);
+	if (targetAngleSpread < PI/11) {
+		targetAngleSpread = PI/11;
+	} 
+	pinpointRotationAngle = map(random(), 0, 1, 0, 2 * PI);	
 }
 
 function drawRockets() {
-	alpha = 100;
-	for (let i = 0; i < rocketsInQueue; i++) {
-		if (i == 0 && !rocketInMotion) {
-			alpha = 255
-		} else {
-			alpha = 100
-		}
-		fill(11, 200, 21, alpha);
-		stroke([9, 179, 17]);
-		rect(475, height/2 + (2 * i * rocketHeight), rocketWidth, rocketHeight);
+	for (let i = 0; i < rocketYs.length; i++) {
+		push()
+		imageMode(CENTER, CENTER);
+		translate(490, rocketYs[i]);
+		rotate(2.3 + map(random(), 0, 1, -0.015, 0.015));
+		image(rocketAsset, 0, 0, rocketWidth, rocketHeight);
+		pop();
 	}
 }
 
@@ -103,7 +126,7 @@ function drawPinpointExercise() {
 	if (pinpointStart) {
 		fill(224, 21, 18);
 		stroke(171, 14, 12);
-		arc(0, 0, circleDiameter, circleDiameter, targetStartAngle, targetStartAngle+targetAngleSpread);
+		arc(0, 0, circleDiameter, circleDiameter, 0, targetAngleSpread);
 	}
 	pop();
 }
@@ -145,7 +168,6 @@ function drawGUIPinpoint() {
 	text("Time:", 1070, 70);
 
 
-
 	// background rectangle
 	rectMode(CORNER)
 	fill(10, 10, 10, 50);
@@ -153,6 +175,7 @@ function drawGUIPinpoint() {
 	strokeWeight(2);
 	rect(20, 200, width/3-20, 400, 10, 10, 10, 10);
 
+	// How to play text
 	textStyle(NORMAL);
 	textSize(32);
 	noStroke();

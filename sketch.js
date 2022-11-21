@@ -14,6 +14,8 @@ let resetButton;
 let startButton;
 
 let backgroundImg;
+let rocketAsset;
+let rocketAssetNoFlame;
 
 let buttonColor;
 let secondaryColor;
@@ -27,6 +29,8 @@ let lineTracingColors;
 
 function preload() {
 	backgroundImg = loadImage('assets/1280x720.png');
+	rocketAsset = loadImage("assets/rocket.png");
+	rocketAssetNoFlame = loadImage("assets/rocketNoFlame.png");
   }
 
 function setup() {
@@ -61,7 +65,7 @@ function setup() {
 }
 
 function draw() {
-	// frameCount++;
+	frameCount++;
 	// avgFrameRate = frameCount / (millis() / 1000);
 	// console.log("Average: " + avgFrameRate);
 	// console.log("Current: " + frameRate());
@@ -98,6 +102,8 @@ function keyPressed() {
 			if (!rocketInMotion) {
 				rocketInMotion = true;
 				rocketsInQueue -= 1;
+				rocketYs.shift();
+				rocketShifting = true;
 			}
 		}
 	}
@@ -143,6 +149,7 @@ function resetExercise() {
 		rocketX = 475;
 		pinpointScore = 0;
 		pinpointTimer = 0;
+		rocketYs = [height/2, height/2+50, height/2+100];
 	}
 }
 
@@ -158,7 +165,8 @@ function drawStartButton(xoffset=0, yoffset=0) {
 	startButton.style("font-size", 24)
 	startButton.mousePressed(() => { 
 		pinpointStart = true; 
-		pinpointStartTime = millis(); 
+		pinpointStartTime = millis();
+		rocketYs = [height/2, height/2+50, height/2+100];
 		nextTarget(); });
 }
 
