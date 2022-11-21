@@ -4,7 +4,11 @@ let pinpointStart = false;
 
 let pinpointRotationAngle = 0;
 let pinpointRotationSpeed = 0.06;
-let pinpointRotationState = [Math.sin(frameCount/30) * 0.06 + 0.01];
+let pinpointRotationState = {
+	0: (x) => Math.sin(x/30) - (1/6), 
+	1: (x1) => Math.sin(x1/30) +(1/6), 
+	2: 1};
+let currentRotationState = 0;
 
 let pinpointScore = 0;
 let pinpointTimer = 0;
@@ -32,7 +36,7 @@ function pinpointExercise() {
 	drawGUIPinpoint();
 	drawPinpointExercise();
 	if (pinpointStart) {
-		pinpointRotationAngle += Math.sin(frameCount/30) * 0.06 + 0.01;
+		pinpointRotationAngle += pinpointRotationState[currentRotationState](frameCount) * pinpointRotationSpeed;
 
 		// update the timer
 		if (pinpointStartTime > 0) {
@@ -91,7 +95,11 @@ function pinpointExercise() {
 }
 
 function setPinpointRotation() {
-	pinpointRotationSpeed = Math.sin(frameCount/60) * 0.06;
+	currentRotationState = int(random(0, pinpointRotationState.length));
+	pinpointRotationSpeed = -0.007 * Math.log(1/(1+pinpointScore)) + 0.06;
+	if (random() < 0.5) {
+		pinpointRotationSpeed[currentRotationState] *= -1
+	}
 }
 
 
@@ -106,7 +114,7 @@ function nextTarget() {
 function drawRockets() {
 	for (let i = 0; i < rocketYs.length; i++) {
 		push()
-		imageMode(CENTER, CENTER);
+		imageMode(CENTER);
 		translate(490, rocketYs[i]);
 		rotate(2.3 + map(random(), 0, 1, -0.015, 0.015));
 		image(rocketAsset, 0, 0, rocketWidth, rocketHeight);
@@ -180,6 +188,7 @@ function drawGUIPinpoint() {
 	textSize(32);
 	noStroke();
 	fill(primaryColor)
+	textAlign(CENTER);
 	text("How to play", width/6, 230);
 
 	// line under How to Play

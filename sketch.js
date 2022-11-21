@@ -167,7 +167,8 @@ function drawStartButton(xoffset=0, yoffset=0) {
 		pinpointStart = true; 
 		pinpointStartTime = millis();
 		rocketYs = [height/2, height/2+50, height/2+100];
-		nextTarget(); });
+		nextTarget();
+		setPinpointRotation() });
 }
 
 function drawResetButton(xoffset=0, yoffset=0) {
