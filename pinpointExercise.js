@@ -278,7 +278,7 @@ function drawGUIPinpoint() {
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("Good luck!", width/6, 580);
+	text("Good luck!", width/6, 585);
 	
 
 	if (!pinpointStart) {
