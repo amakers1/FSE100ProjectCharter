@@ -3,9 +3,11 @@ function home() {
 
 	// draw background rectangle
 	rectMode(CENTER);
-	noStroke();
-	fill(10, 10, 10, 50);
-	rect(width/2, height/2, 500, 600);
+	// noStroke();
+	stroke(primaryColor);
+	strokeWeight(1);
+	fill(10, 10, 10, 60);
+	rect(width/2, height/2, 550, 600);
 
 	// title
 	stroke(primaryColor, 230);

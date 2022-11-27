@@ -27,6 +27,11 @@ let rocketWidth = 100;
 let targetStartAngle;
 let targetAngleSpread;
 
+let missHitFadeLength = 1200;
+let millisAtHit = -1;
+let showMissHitText = false;
+let missOrHit = null;
+
 
 function pinpointExercise() {
 	if (pinpointRotationAngle > 2 * PI) {
@@ -70,6 +75,10 @@ function pinpointExercise() {
 			if (dist(rocketX+37, height/2, 3 * (width/4), height/2) <= circleDiameter/2) {
 				
 				if (rocketHitTarget()) {
+					missOrHit = "hit";
+					showMissHitText = true;
+					millisAtHit = millis();
+
 					rocketInMotion = false;
 					rocketX = 490;
 					pinpointScore++;
@@ -80,6 +89,10 @@ function pinpointExercise() {
 					console.log("HIT!!!!");
 				}
 				else {
+					missOrHit = "miss";
+					showMissHitText = true;
+					millisAtHit = millis();
+
 					rocketInMotion = false;
 					rocketX = 490;
 					console.log("MISS:(((((((");
@@ -93,8 +106,38 @@ function pinpointExercise() {
 	}
 	drawRockets();
 
+	if (showMissHitText) {
+		drawMissHitText();
+	}
 }
 
+
+function drawMissHitText() {
+	a = map(millis()-millisAtHit, 0, missHitFadeLength, 255, 0);
+	size = map(millis()-millisAtHit, 0, missHitFadeLength, 120, 80);
+
+	console.log(a, size)
+	textAlign(CENTER, CENTER);
+	strokeWeight(10);
+	if (missOrHit == "miss") {
+		// fill(primaryColor, a);
+		stroke(171, 14, 12, a);
+		textSize(size);
+
+		text("MISS", 3 * (width/4), height/2);
+	}
+	else {
+		// fill(primaryColor, a);
+		stroke(7, 143, 14, a);
+		textSize(size);
+
+		text("HIT", 3 * (width/4), height/2);
+	}
+	if (millisAtHit + missHitFadeLength < millis()) {
+		showMissHitText = false;
+		millisAtHit = -1;
+	}
+}
 
 function rocketHitTarget() {
 	returnVal = false;
@@ -194,26 +237,24 @@ function drawGUIPinpoint() {
 
 	// background rectangle
 	rectMode(CORNER)
-	fill(10, 10, 10, 50);
+	fill(10, 10, 10, 100);
 	stroke(primaryColor, 200);
 	strokeWeight(2);
 	rect(20, 200, width/3-20, 400, 10, 10, 10, 10);
 
 	// How to play text
 	textStyle(NORMAL);
-	textSize(32);
-	noStroke();
-	fill(primaryColor)
+	textSize(35);
+	fill(primaryColor);
+	stroke(255);
+	strokeWeight(2);
 	textAlign(CENTER);
-	text("How to play", width/6, 230);
+	text("How to play", width/6+10, 230);
 
 	// line under How to Play
-	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
 
 	// instructions for how to play 
-	textHeightY = 290;
-	separation = 22;
 	howToPlayText = "For this game you will use SPACE.\n"+
 			"To start the game click the Start button in the \n"+
 			"bottom left corner.\n"+
@@ -223,10 +264,13 @@ function drawGUIPinpoint() {
 			"side of the circle and hit the red target.\n"+
 			"In order to launch the rockets, press the \n"+
 			"SPACE bar. Good Luck!";
+	textHeightY = 300;
 	textAlign(LEFT, LEFT);
 	textStyle(NORMAL);
 	textSize(19);
+	fill(secondaryColor);
 	noStroke();
+	textLeading(30);
 	text(howToPlayText, width/6 - 178, textHeightY);
 
 	if (!pinpointStart) {
