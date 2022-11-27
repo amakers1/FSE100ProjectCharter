@@ -201,49 +201,49 @@ function drawGUIPinpoint() {
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("For this game you will need to use your space bar ", width/6, 290);
+	text("For this game you will need to use your space bar ", width/6, 280);
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("from your keyboard. ", width/6, 310);
+	text("from your keyboard. ", width/6, 300);
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("Press the start button in the ", width/6, 350);
+	text("Press the start button in the ", width/6, 330);
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("bottom left corner of this box. ", width/6, 380);
+	text("bottom left corner of this box. ", width/6, 350);
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("Once you press start the circle will start spinning. ", width/6, 420);
+	text("Once you press start the circle will start spinning. ", width/6, 380);
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("When you press your space bar ", width/6, 460);
+	text("When you press your space bar ", width/6, 410);
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("the green rectangle on the left ", width/6, 490);
+	text("the green rectangle on the left ", width/6, 430);
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("of the circle will shoot at the circle. ", width/6, 440);
+	text("of the circle will shoot at the circle. ", width/6, 450);
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(17);
@@ -255,30 +255,30 @@ function drawGUIPinpoint() {
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("at the red section of the circle. ", width/6, 510);
+	text("at the red section of the circle. ", width/6, 500);
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("Everytime you hit the red section ", width/6, 550);
+	text("Everytime you hit the red section ", width/6, 530);
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("of the circle successfully, ", width/6, 580);
+	text("of the circle successfully, ", width/6, 550);
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(17);
 	noStroke();
-	text("you will earn a point. ", width/6, 610);
+	text("you will earn a point. ", width/6, 570);
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(17);
 	noStroke();
 	fill(primaryColor)
-	text("Good luck!", width/6, 650);
+	text("Good luck!", width/6, 600);
 	
 
 	if (!pinpointStart) {
