@@ -65,10 +65,11 @@ function pinpointExercise() {
 			image(rocketAsset, 0, 0, rocketWidth, rocketHeight);
 			pop();
 			
+
 		
 			if (dist(rocketX+37, height/2, 3 * (width/4), height/2) <= circleDiameter/2) {
 				
-				if (pinpointRotationAngle < 3.1415 && pinpointRotationAngle + targetAngleSpread > 3.1415) {
+				if (rocketHitTarget()) {
 					rocketInMotion = false;
 					rocketX = 490;
 					pinpointScore++;
@@ -94,12 +95,27 @@ function pinpointExercise() {
 
 }
 
+
+function rocketHitTarget() {
+	returnVal = false;
+	if (pinpointRotationAngle < 0) {
+		pra = (2 * PI) + pinpointRotationAngle;
+		if (pra < 3.1415 && pra + targetAngleSpread > 3.1415) {	
+			returnVal = true;
+		}
+	}
+	else {
+		if (pinpointRotationAngle < 3.1415 && pinpointRotationAngle + targetAngleSpread > 3.1415) {
+			returnVal = true;
+		}
+	}
+	return returnVal;
+}
+
+
 function setPinpointRotation() {
 	currentRotationState = int(random(0, pinpointRotationState.length));
 	pinpointRotationSpeed = -0.007 * Math.log(1/(1+pinpointScore)) + 0.06;
-	if (random() < 0.5) {
-		pinpointRotationSpeed[currentRotationState] *= -1
-	}
 }
 
 
@@ -196,90 +212,22 @@ function drawGUIPinpoint() {
 	line(40, 260, width/3-20, 260);
 
 	// instructions for how to play 
-	textAlign(CENTER, CENTER);
+	textHeightY = 290;
+	separation = 22;
+	howToPlayText = "For this game you will use SPACE.\n"+
+			"To start the game click the Start button in the \n"+
+			"bottom left corner.\n"+
+			"The game will start will a spinning circle a \n"+
+			"red target section.\n"+
+			"Your goal is to shoot the rockets on the left \n"+
+			"side of the circle and hit the red target.\n"+
+			"In order to launch the rockets, press the \n"+
+			"SPACE bar. Good Luck!";
+	textAlign(LEFT, LEFT);
 	textStyle(NORMAL);
-	textSize(17);
+	textSize(19);
 	noStroke();
-	fill(primaryColor)
-	text("For this game you will need to use your space bar ", width/6, 290);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("from your keyboard. ", width/6, 310);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("Press the start button in the ", width/6, 350);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("bottom left corner of this box. ", width/6, 380);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("Once you press start the circle will start spinning. ", width/6, 420);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("When you press your space bar ", width/6, 460);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("the green rectangle on the left ", width/6, 490);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("of the circle will shoot at the circle. ", width/6, 440);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("The goal is to shoot the green rectangle ", width/6, 480);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("at the red section of the circle. ", width/6, 510);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("Everytime you hit the red section ", width/6, 550);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("of the circle successfully, ", width/6, 580);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	text("you will earn a point. ", width/6, 610);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("Good luck!", width/6, 650);
-	
+	text(howToPlayText, width/6 - 178, textHeightY);
 
 	if (!pinpointStart) {
 		// draw start button

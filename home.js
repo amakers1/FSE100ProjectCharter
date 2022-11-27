@@ -15,8 +15,8 @@ function home() {
 	fill(255, 255, 255);
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
-	textSize(64);
-	text("App Name", width/2, 2 * (height / 8));
+	textSize(45);
+	text("Planetary Conquest", width/2, 2 * (height / 8));
 
 	// line tracing button
 	lineButton.position(width/2 - (standardButtonWidth/2), 4 * (height / 8))
