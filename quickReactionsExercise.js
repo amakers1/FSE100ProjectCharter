@@ -96,12 +96,13 @@ function drawGUIQuickReaction() {
 	// instructions on how to play
 	howToPlayText = "Start by clicking the blue box to the right.\n"+
 					"Once you have clicked the blue box, \n"+
-					"the box will turn red.\n"+
+					"the box will turn red. \n"+
 					"The goal is to click the box as fast as you \n"+
-					"can once it turns green.\n"+
-					"After you click the game will display the \n"+
-					"time that it took you to click the box.\n"+
-					"Try to make your time as small as possible!\n";
+					"can once it turns green. \n"+
+					"After you click, the game will display the \n"+
+					"time that it took you. \n"+
+					"Try to make your time as small as possible! \n" +
+					"Good luck!";
 	textHeightY = 300;
 	textAlign(LEFT, LEFT);
 	textStyle(NORMAL);

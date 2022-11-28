@@ -208,13 +208,13 @@ function drawGUILineTracing() {
 
 
 	// instructions on how to play
-	howToPlayText = "Move the cursor over the starting area to \n"+
-					"start the game.\n"+
+	howToPlayText = "Move the cursor over the green planet \n"+
+					"to start the game.\n"+
 					"Move the cursor along the line to each \n"+
-					"checkpoint.\n"+
-					"Stay within the line to get points.\n"+
+					"blue planet until you reach the red one.\n"+
+					"Stay on the path to get points.\n"+
 					"Try to reach the finish as fast as you can. \n"+
-					"Good Luck!\n";
+					"Good Luck!";
 	textHeightY = 300;
 	textAlign(LEFT, LEFT);
 	textStyle(NORMAL);

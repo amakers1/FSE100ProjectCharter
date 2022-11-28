@@ -263,7 +263,8 @@ function drawGUIPinpoint() {
 			"In order to launch the rockets, press the \n" +
 			"SPACE bar. \n" + 
 			"The game ends when you miss 3 times. \n" +
-			"Click the Start Button to begin. Good Luck!";
+			"Click the Start Button to begin. \n" +
+			"Good Luck!";
 	textHeightY = 300;
 	textAlign(LEFT, LEFT);
 	textStyle(NORMAL);
