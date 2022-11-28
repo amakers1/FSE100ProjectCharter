@@ -5,22 +5,22 @@ function home() {
 	rectMode(CENTER);
 	noStroke();
 	fill(10, 10, 10, 50);
-	rect(width/2, height/2, 500, 600);
+	rect(width/2, height/2, 750, 600);
 
 	// title
 	stroke(primaryColor, 230);
 	strokeWeight(3);
 	fill(10, 10, 10, 100);
-	rect(width/2, 2 * (height / 8), standardButtonWidth, standardButtonHeight*2, 50, 0, 50, 0);
+	rect(width/2, 2 * (height / 8), standardButtonWidth * 1.5, standardButtonHeight*2, 50, 0, 50, 0);
 	fill(255, 255, 255);
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
 	textSize(64);
-	text("App Name", width/2, 2 * (height / 8));
+	text("Planetary Conquest", width/2, 2 * (height / 8));
 
 	// line tracing button
-	lineButton.position(width/2 - (standardButtonWidth/2), 4 * (height / 8))
-	lineButton.size(standardButtonWidth, standardButtonHeight)
+	lineButton.position(width/2.45 - (standardButtonWidth/2), 4 * (height / 8))
+	lineButton.size(standardButtonWidth * 1.5, standardButtonHeight)
 	lineButton.style("background-color", buttonColor)
 	lineButton.style("color", textColor)
 	lineButton.style("border-width: 3px")
@@ -31,8 +31,8 @@ function home() {
 	lineButton.show();
 
 	// pinpoint button
-	pinpointButton.position(width/2 - (standardButtonWidth/2), 5 * (height / 8))
-	pinpointButton.size(standardButtonWidth, standardButtonHeight)
+	pinpointButton.position(width/2.45 - (standardButtonWidth/2), 5 * (height / 8))
+	pinpointButton.size(standardButtonWidth * 1.5, standardButtonHeight)
 	pinpointButton.style("background-color", buttonColor)
 	pinpointButton.style("color", textColor)
 	pinpointButton.style("border-width: 3px")
@@ -43,8 +43,8 @@ function home() {
 	pinpointButton.show();
 
 	// quick reaction button
-	quickButton.position(width/2 - (standardButtonWidth/2), 6 * (height / 8))
-	quickButton.size(standardButtonWidth, standardButtonHeight)
+	quickButton.position(width/2.45 - (standardButtonWidth/2), 6 * (height / 8))
+	quickButton.size(standardButtonWidth * 1.5, standardButtonHeight)
 	quickButton.style("background-color", buttonColor)
 	quickButton.style("color", textColor)
 	quickButton.style("border-width: 3px")

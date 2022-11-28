@@ -3,7 +3,7 @@
 // pinpoint - pinpoint exercise
 // quick - quick reaction exercise
 let frameCount = 0;
-let gameState = "pinpoint";
+let gameState = "home";
 let exerciseStart = false;
 
 let backButton;
@@ -37,20 +37,20 @@ function setup() {
 	frameRate(30);
 	createCanvas(1280, 720);
 
-	standardButtonWidth = width/3;
+	standardButtonWidth = width/3+50;
 	standardButtonHeight = height/10;
 	secondaryColor = [21, 167, 224];
 	primaryColor = [16, 131, 176];
 	buttonColor = color(43, 43, 43);
 	textColor = color(220, 220, 220);
-	buttonTextSize = "28px";
+	buttonTextSize = "32px";
 
 	backButton = createButton("BACK").hide();
 	resetButton = createButton("RESET").hide();
 	startButton = createButton("START").hide();
-	quickButton = createButton("Quick Reaction").hide();
-	pinpointButton = createButton("Pinpoint").hide();
-	lineButton = createButton("Line Tracing").hide();
+	quickButton = createButton("Emergency Stop").hide();
+	pinpointButton = createButton("Crash Landing").hide();
+	lineButton = createButton("Cruise Control").hide();
 
 	// initialize variables for line tracing exercise
 	lineTracingColors = [[secondaryColor[0], secondaryColor[1], secondaryColor[2], 255], [primaryColor[0], primaryColor[1], primaryColor[2], 255], [12, 166, 20, 255], [15, 92, 5, 255]];

@@ -71,7 +71,7 @@ function drawGUIQuickReaction() {
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
 	textSize(48);
-	text("Quick Reactions", width/6+10, height/8 + 10);
+	text("Emergency Stop", width/6+10, height/8 + 10);
 
 
 	// background rectangle
@@ -81,71 +81,36 @@ function drawGUIQuickReaction() {
 	strokeWeight(2);
 	rect(20, 200, width/3-20, 400, 10, 10, 10, 10);
 
+	// How to play text
 	textStyle(NORMAL);
 	textSize(32);
-	noStroke();
-	fill(primaryColor)
+	fill(primaryColor);
+	stroke(255);
+	strokeWeight(2);
 	text("How to play", width/6, 230);
 
 	// line under How to Play
 	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
 
-	// instructions for how to play
-	textAlign(CENTER, CENTER);
-    	textStyle(NORMAL);
-    	textSize(17);
-    	noStroke();
-    	fill(primaryColor)
-    	text("Start by clicking the blue box to the right.", width/6, 300);
-    	textAlign(CENTER, CENTER);
-    	textStyle(NORMAL);
-    	textSize(17);
-    	noStroke();
-    	fill(primaryColor)
-    	text("Once you have clicked the blue box, ", width/6, 340);
-    	textAlign(CENTER, CENTER);
-    	textStyle(NORMAL);
-    	textSize(17);
-    	noStroke();
-    	fill(primaryColor)
-		text("the box will turn green.", width/6, 370);
-    	textAlign(CENTER, CENTER);
-    	textStyle(NORMAL);
-    	textSize(17);
-    	noStroke();
-    	fill(primaryColor)
-    	text("The goal is to click the box as fast as you can ", width/6, 410);
-    	textAlign(CENTER, CENTER);
-    	textStyle(NORMAL);
-    	textSize(17);
-    	noStroke();
-    	fill(primaryColor)
-		text("once it is green.", width/6, 440);
-    	textAlign(CENTER, CENTER);
-    	textStyle(NORMAL);
-    	textSize(17);
-    	noStroke();
-    	fill(primaryColor)
-    	text(" Once you have clicked the box when it is green, ", width/6, 480);
-		textAlign(CENTER, CENTER);
-    	textStyle(NORMAL);
-    	textSize(17);
-    	noStroke();
-    	fill(primaryColor)
-		text("it will display the time that it took you to ", width/6, 510);
-		textAlign(CENTER, CENTER);
-    	textStyle(NORMAL);
-    	textSize(17);
-    	noStroke();
-		text("click the box.", width/6, 540);
-		textAlign(CENTER, CENTER);
-    	textStyle(NORMAL);
-    	textSize(17);
-    	noStroke();
-    	fill(primaryColor)
-    	text("Try to make your time as small as possible!", width/6, 580);
-		
+	// instructions on how to play
+	howToPlayText = "Start by clicking the blue box to the right.\n"+
+					"Once you have clicked the blue box, \n"+
+					"the box will turn red. \n"+
+					"The goal is to click the box as fast as you \n"+
+					"can once it turns green. \n"+
+					"After you click, the game will display the \n"+
+					"time that it took you. \n"+
+					"Try to make your time as small as possible! \n" +
+					"Good luck!";
+	textHeightY = 300;
+	textAlign(LEFT, LEFT);
+	textStyle(NORMAL);
+	textSize(20);
+	fill(secondaryColor);
+	noStroke();
+	textLeading(30);
+	text(howToPlayText, width/6 - 178, textHeightY);
 
 	// draw back button
 	drawBackButton(150);
