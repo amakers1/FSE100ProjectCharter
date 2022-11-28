@@ -19,7 +19,7 @@ function home() {
 	text("Planetary Conquest", width/2, 2 * (height / 8));
 
 	// line tracing button
-	lineButton.position(width/2.4 - (standardButtonWidth/2), 4 * (height / 8))
+	lineButton.position(width/2.45 - (standardButtonWidth/2), 4 * (height / 8))
 	lineButton.size(standardButtonWidth * 1.5, standardButtonHeight)
 	lineButton.style("background-color", buttonColor)
 	lineButton.style("color", textColor)
@@ -31,7 +31,7 @@ function home() {
 	lineButton.show();
 
 	// pinpoint button
-	pinpointButton.position(width/2.4 - (standardButtonWidth/2), 5 * (height / 8))
+	pinpointButton.position(width/2.45 - (standardButtonWidth/2), 5 * (height / 8))
 	pinpointButton.size(standardButtonWidth * 1.5, standardButtonHeight)
 	pinpointButton.style("background-color", buttonColor)
 	pinpointButton.style("color", textColor)
@@ -43,7 +43,7 @@ function home() {
 	pinpointButton.show();
 
 	// quick reaction button
-	quickButton.position(width/2.4 - (standardButtonWidth/2), 6 * (height / 8))
+	quickButton.position(width/2.45 - (standardButtonWidth/2), 6 * (height / 8))
 	quickButton.size(standardButtonWidth * 1.5, standardButtonHeight)
 	quickButton.style("background-color", buttonColor)
 	quickButton.style("color", textColor)
