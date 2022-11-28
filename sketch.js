@@ -3,7 +3,7 @@
 // pinpoint - pinpoint exercise
 // quick - quick reaction exercise
 let frameCount = 0;
-let gameState = "pinpoint";
+let gameState = "home";
 let exerciseStart = false;
 
 let backButton;
