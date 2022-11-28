@@ -1,107 +1,201 @@
-let circleDiameter = 500;
+let circleDiameter = 450;
 let pinDiameter = 50;
 let pinpointStart = false;
 
 let pinpointRotationAngle = 0;
-let pinpointRotationSpeed = 0.08;
+let pinpointRotationSpeed = 0.06;
+let pinpointRotationState = {
+	0: (x) => Math.sin(x/30) - (1/6), 
+	1: (x1) => Math.sin(x1/30) +(1/6), 
+	2: 1};
+let currentRotationState = 0;
 
 let pinpointScore = 0;
 let pinpointTimer = 0;
 let pinpointStartTime = 0;
 let rocketsInQueue = 3;
 
-let rocketX = 475;
-let rocketVelX = 50;
+let rocketX = 490;
+let rocketYs = [];
+let rocketVelX = 20;
+let rocketRotation = 2.3;
 let rocketInMotion = false;
-let rocketHeight = 25;
+let rocketShifting = false;
+let rocketHeight = 100;
 let rocketWidth = 100;
 
 let targetStartAngle;
 let targetAngleSpread;
 
+let missHitFadeLength = 1200;
+let millisAtHit = -1;
+let showMissHitText = false;
+let missOrHit = null;
+
 
 function pinpointExercise() {
-	pinpointRotationAngle += pinpointRotationSpeed;
 	if (pinpointRotationAngle > 2 * PI) {
 		pinpointRotationAngle = 0;
 	}
 
 	drawGUIPinpoint();
+	drawPinpointExercise();
 	if (pinpointStart) {
-			// update the timer
+		pinpointRotationAngle += pinpointRotationState[currentRotationState](frameCount) * pinpointRotationSpeed;
+
+		// update the timer
 		if (pinpointStartTime > 0) {
 			pinpointTimer = (millis() - pinpointStartTime) / 1000;
 		}
 
-		// console.log(targetStartAngle, pinpointRotationAngle,  targetAngleSpread)
 		if (rocketInMotion) {
+
+			if (rocketShifting) {
+				for (let i = 0; i < rocketsInQueue; i++) {
+					rocketYs[i] -= 5;
+
+					if (rocketYs[i] <= height/2) {
+						rocketYs[i] = height/2
+						rocketShifting = false;
+					}
+				}
+			}
+
 			rocketX += rocketVelX;
+			
+			push()
+			imageMode(CENTER, CENTER);
+			translate(rocketX, height/2);
+			rotate(2.3 + map(random(), 0, 1, -0.01, 0.01));
+			image(rocketAsset, 0, 0, rocketWidth, rocketHeight);
+			pop();
+			
 
-			fill(11, 200, 21);
-			stroke(9, 179, 17);
-			rect(rocketX, height/2, rocketWidth, rocketHeight);
-
-			if (dist(rocketX+rocketWidth, height/2+(rocketHeight/2), 3 * (width/4), height/2) <= circleDiameter/2) {
+		
+			if (dist(rocketX+37, height/2, 3 * (width/4), height/2) <= circleDiameter/2) {
 				
+				if (rocketHitTarget()) {
+					missOrHit = "hit";
+					showMissHitText = true;
+					millisAtHit = millis();
 
-				if (PI > pinpointRotationAngle + targetStartAngle && PI < pinpointRotationAngle + targetStartAngle + targetAngleSpread) {
 					rocketInMotion = false;
-					rocketX = 475;
+					rocketX = 490;
 					pinpointScore++;
 					rocketsInQueue++;
+					rocketYs.push(rocketYs.length * 50 + (height/2));
 					nextTarget();
+					setPinpointRotation();
 					console.log("HIT!!!!");
 				}
 				else {
+					missOrHit = "miss";
+					showMissHitText = true;
+					millisAtHit = millis();
+
 					rocketInMotion = false;
-					rocketX = 475;
+					rocketX = 490;
 					console.log("MISS:(((((((");
+					if (rocketsInQueue == 0) {
+						resetExercise();
+					}
 				}
+				
 			}
 		}
-		drawRockets();
-		drawPinpointExercise();
+	}
+	drawRockets();
+
+	if (showMissHitText) {
+		drawMissHitText();
 	}
 }
 
 
-function nextTarget() {
-	targetStartAngle = Math.random() * PI;
-	targetAngleSpread = (PI/4) + (Math.random() * PI / 2);
-	targetAngleSpread /= (pinpointScore + 1);
-	pinpointRotationAngle = targetStartAngle;	
+function drawMissHitText() {
+	a = map(millis()-millisAtHit, 0, missHitFadeLength, 255, 0);
+	size = map(millis()-millisAtHit, 0, missHitFadeLength, 120, 80);
+
+	console.log(a, size)
+	textAlign(CENTER, CENTER);
+	strokeWeight(10);
+	if (missOrHit == "miss") {
+		// fill(primaryColor, a);
+		stroke(171, 14, 12, a);
+		textSize(size);
+
+		text("MISS", 3 * (width/4), height/2);
+	}
+	else {
+		// fill(primaryColor, a);
+		stroke(7, 143, 14, a);
+		textSize(size);
+
+		text("HIT", 3 * (width/4), height/2);
+	}
+	if (millisAtHit + missHitFadeLength < millis()) {
+		showMissHitText = false;
+		millisAtHit = -1;
+	}
 }
 
-function drawRockets() {	
-	alpha = 100;
-	for (let i = 0; i < rocketsInQueue; i++) {
-		if (i == 0 && !rocketInMotion) {
-			alpha = 255
-		} else {
-			alpha = 100
+function rocketHitTarget() {
+	returnVal = false;
+	if (pinpointRotationAngle < 0) {
+		pra = (2 * PI) + pinpointRotationAngle;
+		if (pra < 3.1415 && pra + targetAngleSpread > 3.1415) {	
+			returnVal = true;
 		}
-		fill(11, 200, 21, alpha);
-		stroke([9, 179, 17]);
-		rect(475, height/2 + (2 * i * rocketHeight), rocketWidth, rocketHeight);
+	}
+	else {
+		if (pinpointRotationAngle < 3.1415 && pinpointRotationAngle + targetAngleSpread > 3.1415) {
+			returnVal = true;
+		}
+	}
+	return returnVal;
+}
+
+
+function setPinpointRotation() {
+	currentRotationState = int(random(0, pinpointRotationState.length));
+	pinpointRotationSpeed = -0.007 * Math.log(1/(1+pinpointScore)) + 0.06;
+}
+
+
+function nextTarget() {
+	targetAngleSpread = (0.7*Math.log(1/(pinpointScore+1))+2.3) * map(random(), 0, 1, PI/4, PI/2);
+	if (targetAngleSpread < PI/11) {
+		targetAngleSpread = PI/11;
+	} 
+	pinpointRotationAngle = map(random(), 0, 1, 0, 2 * PI);	
+}
+
+function drawRockets() {
+	for (let i = 0; i < rocketYs.length; i++) {
+		push()
+		imageMode(CENTER);
+		translate(490, rocketYs[i]);
+		rotate(2.3 + map(random(), 0, 1, -0.015, 0.015));
+		image(rocketAsset, 0, 0, rocketWidth, rocketHeight);
+		pop();
 	}
 }
 
 
 function drawPinpointExercise() {
+	push();
 	translate(3 * (width/4), height/2);
 	rotate(pinpointRotationAngle);
 
 	fill(secondaryColor);
 	stroke(primaryColor);
 	ellipse(0, 0, circleDiameter);
-
-	fill(224, 21, 18);
-	stroke(171, 14, 12);
-
-	// targetStartAngle = 0;
-	// targetAngleSpread = PI / 4;
-
-	arc(0, 0, circleDiameter, circleDiameter, targetStartAngle, targetStartAngle+targetAngleSpread);
+	if (pinpointStart) {
+		fill(224, 21, 18);
+		stroke(171, 14, 12);
+		arc(0, 0, circleDiameter, circleDiameter, 0, targetAngleSpread);
+	}
+	pop();
 }
 
 
@@ -141,24 +235,43 @@ function drawGUIPinpoint() {
 	text("Time:", 1070, 70);
 
 
-
 	// background rectangle
 	rectMode(CORNER)
-	fill(10, 10, 10, 50);
+	fill(10, 10, 10, 100);
 	stroke(primaryColor, 200);
 	strokeWeight(2);
 	rect(20, 200, width/3-20, 400, 10, 10, 10, 10);
 
+	// How to play text
 	textStyle(NORMAL);
-	textSize(32);
-	noStroke();
-	fill(primaryColor)
-	text("How to play", width/6, 230);
+	textSize(35);
+	fill(primaryColor);
+	stroke(255);
+	strokeWeight(2);
+	textAlign(CENTER);
+	text("How to play", width/6+10, 230);
 
 	// line under How to Play
-	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
 
+	// instructions for how to play 
+	howToPlayText = "For this game you will use SPACE.\n"+
+			"To start the game click the Start button in the \n"+
+			"bottom left corner.\n"+
+			"The game will start will a spinning circle a \n"+
+			"red target section.\n"+
+			"Your goal is to shoot the rockets on the left \n"+
+			"side of the circle and hit the red target.\n"+
+			"In order to launch the rockets, press the \n"+
+			"SPACE bar. Good Luck!";
+	textHeightY = 300;
+	textAlign(LEFT, LEFT);
+	textStyle(NORMAL);
+	textSize(19);
+	fill(secondaryColor);
+	noStroke();
+	textLeading(30);
+	text(howToPlayText, width/6 - 178, textHeightY);
 
 	if (!pinpointStart) {
 		// draw start button

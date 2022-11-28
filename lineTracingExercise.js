@@ -120,8 +120,8 @@ function drawLine(x0, y0, x1, y1, index) {
 	if(typeof lineCords[index] !== 'undefined') {
 		// if the line segment should be drawn green
 		if (lineCords[index][4]) {
-			fill([11, 212, 21]);
-			stroke([9, 179, 17]);
+			fill(11, 212, 21);
+			stroke(9, 179, 17);
 		}
 		// it should be drawn with red colors
 		else if (lineCords[index][4] == false) {
@@ -197,39 +197,32 @@ function drawGUILineTracing() {
 	textAlign(CENTER, CENTER);
 	textStyle(NORMAL);
 	textSize(32);
-	noStroke();
-	fill(primaryColor)
-	text("How to play", width/6, 230);
+	fill(primaryColor);
+	stroke(255);
+	strokeWeight(2);
+	text("How to play", width/6+10, 230);
 
 	// line under How to Play
 	stroke(primaryColor);
 	line(40, 260, width/3-20, 260);
 
-	// instructions for game
-	textAlign(CENTER, CENTER);
+
+	// instructions on how to play
+	howToPlayText = "Move the cursor over the starting area to \n"+
+					"start the game.\n"+
+					"Move the cursor along the line to each \n"+
+					"checkpoint.\n"+
+					"Stay within the line to get points.\n"+
+					"Try to reach the finish as fast as you can. \n"+
+					"Good Luck!\n";
+	textHeightY = 300;
+	textAlign(LEFT, LEFT);
 	textStyle(NORMAL);
-	textSize(17);
+	textSize(20);
+	fill(secondaryColor);
 	noStroke();
-	fill(primaryColor)
-	text("Place the cursor on the starting point to start.", width/6, 300);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("   Move the cursor along the line to each checkpoint.", width/6, 330);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("Stay within the line to get points.", width/6, 360);
-	textAlign(CENTER, CENTER);
-	textStyle(NORMAL);
-	textSize(17);
-	noStroke();
-	fill(primaryColor)
-	text("Try to reach the finish as fast as you can!", width/6, 390);
+	textLeading(30);
+	text(howToPlayText, width/6 - 178, textHeightY);
 
 	// draw reset button
 	drawResetButton();

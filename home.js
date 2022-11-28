@@ -3,9 +3,17 @@ function home() {
 
 	// draw background rectangle
 	rectMode(CENTER);
+<<<<<<< HEAD
 	noStroke();
 	fill(10, 10, 10, 50);
 	rect(width/2, height/2, 750, 600);
+=======
+	// noStroke();
+	stroke(primaryColor);
+	strokeWeight(1);
+	fill(10, 10, 10, 60);
+	rect(width/2, height/2, 550, 600);
+>>>>>>> 54305671d35b57f17b22cbc5c6b55d8592a25518
 
 	// title
 	stroke(primaryColor, 230);
@@ -15,7 +23,11 @@ function home() {
 	fill(255, 255, 255);
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
+<<<<<<< HEAD
 	textSize(64);
+=======
+	textSize(45);
+>>>>>>> 54305671d35b57f17b22cbc5c6b55d8592a25518
 	text("Planetary Conquest", width/2, 2 * (height / 8));
 
 	// line tracing button

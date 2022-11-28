@@ -14,6 +14,8 @@ let resetButton;
 let startButton;
 
 let backgroundImg;
+let rocketAsset;
+let rocketAssetNoFlame;
 
 let buttonColor;
 let secondaryColor;
@@ -27,19 +29,21 @@ let lineTracingColors;
 
 function preload() {
 	backgroundImg = loadImage('assets/1280x720.png');
+	rocketAsset = loadImage("assets/rocket.png");
+	rocketAssetNoFlame = loadImage("assets/rocketNoFlame.png");
   }
 
 function setup() {
-	// frameRate(30);
+	frameRate(30);
 	createCanvas(1280, 720);
 
-	standardButtonWidth = width/3;
+	standardButtonWidth = width/3+50;
 	standardButtonHeight = height/10;
 	secondaryColor = [21, 167, 224];
 	primaryColor = [16, 131, 176];
 	buttonColor = color(43, 43, 43);
 	textColor = color(220, 220, 220);
-	buttonTextSize = "28px";
+	buttonTextSize = "32px";
 
 	backButton = createButton("BACK").hide();
 	resetButton = createButton("RESET").hide();
@@ -62,9 +66,9 @@ function setup() {
 
 function draw() {
 	frameCount++;
-	avgFrameRate = frameCount / (millis() / 1000);
-	console.log("Average: " + avgFrameRate);
-	console.log("Current: " + frameRate());
+	// avgFrameRate = frameCount / (millis() / 1000);
+	// console.log("Average: " + avgFrameRate);
+	// console.log("Current: " + frameRate());
 
 	image(backgroundImg, 0, 0); 
 
@@ -89,13 +93,6 @@ function mousePressed() {
 }
 
 
-// function mouseDragged() {
-// 	if (clickedStartPin) {
-// 		mouseAngle = -Math.atan2(mouseY - (height/2), mouseX - (2*(width/3)));
-// 		console.log(mouseAngle, startAngle, endAngle);
-// 	}
-// }
-
 function keyPressed() {
 	if (key == ' ') {
 		if (gameState === "quick") {
@@ -105,6 +102,8 @@ function keyPressed() {
 			if (!rocketInMotion) {
 				rocketInMotion = true;
 				rocketsInQueue -= 1;
+				rocketYs.shift();
+				rocketShifting = true;
 			}
 		}
 	}
@@ -140,8 +139,17 @@ function resetExercise() {
 	else if (gameState === "quick") {
 		// reset the quick reaction game
 		quickReactionState = "idle";
-		
-		console.log("inside reset " + quickReactionState);
+	}
+	else if (gameState == "pinpoint") {
+		pinpointStartTime = 0;
+		pinpointStart = false;
+		pinpointRotationAngle = 0;
+		rocketsInQueue = 3;
+		rocketInMotion = 0;
+		rocketX = 475;
+		pinpointScore = 0;
+		pinpointTimer = 0;
+		rocketYs = [height/2, height/2+50, height/2+100];
 	}
 }
 
@@ -157,8 +165,10 @@ function drawStartButton(xoffset=0, yoffset=0) {
 	startButton.style("font-size", 24)
 	startButton.mousePressed(() => { 
 		pinpointStart = true; 
-		pinpointStartTime = millis(); 
-		nextTarget(); });
+		pinpointStartTime = millis();
+		rocketYs = [height/2, height/2+50, height/2+100];
+		nextTarget();
+		setPinpointRotation() });
 }
 
 function drawResetButton(xoffset=0, yoffset=0) {
