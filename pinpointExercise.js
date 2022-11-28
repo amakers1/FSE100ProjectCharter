@@ -221,7 +221,7 @@ function drawGUIPinpoint() {
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
 	textSize(56);
-	text("Pinpoint", width/6+10, height/8 + 10);
+	text("Crash Landing", width/6+10, height/8 + 10);
 
 	// score and time text
 	textAlign(LEFT);
@@ -255,15 +255,15 @@ function drawGUIPinpoint() {
 	line(40, 260, width/3-20, 260);
 
 	// instructions for how to play 
-	howToPlayText = "For this game you will use SPACE.\n"+
-			"To start the game click the Start button in the \n"+
-			"bottom left corner.\n"+
-			"The game will start will a spinning circle a \n"+
-			"red target section.\n"+
-			"Your goal is to shoot the rockets on the left \n"+
-			"side of the circle and hit the red target.\n"+
-			"In order to launch the rockets, press the \n"+
-			"SPACE bar. Good Luck!";
+	howToPlayText = 
+			"For this game you will use the SPACE BAR. \n" +
+			"The game will start with a spinning red target. \n" +
+			"Your goal is to land the rockets onto the red \n" +
+			"targets on the planet. \n" +
+			"In order to launch the rockets, press the \n" +
+			"SPACE bar. \n" + 
+			"The game ends when you miss 3 times. \n" +
+			"Click the Start Button to begin. Good Luck!";
 	textHeightY = 300;
 	textAlign(LEFT, LEFT);
 	textStyle(NORMAL);

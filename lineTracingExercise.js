@@ -164,7 +164,7 @@ function drawGUILineTracing() {
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
 	textSize(56);
-	text("Line Tracing", width/6+10, height/8 + 10);
+	text("Cruise Control", width/6+10, height/8 + 10);
 	
 
 	// score and time text

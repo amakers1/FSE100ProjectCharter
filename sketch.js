@@ -48,9 +48,9 @@ function setup() {
 	backButton = createButton("BACK").hide();
 	resetButton = createButton("RESET").hide();
 	startButton = createButton("START").hide();
-	quickButton = createButton("Quick Reaction").hide();
-	pinpointButton = createButton("Pinpoint").hide();
-	lineButton = createButton("Line Tracing").hide();
+	quickButton = createButton("Emergency Stop").hide();
+	pinpointButton = createButton("Crash Landing").hide();
+	lineButton = createButton("Cruise Control").hide();
 
 	// initialize variables for line tracing exercise
 	lineTracingColors = [[secondaryColor[0], secondaryColor[1], secondaryColor[2], 255], [primaryColor[0], primaryColor[1], primaryColor[2], 255], [12, 166, 20, 255], [15, 92, 5, 255]];

@@ -71,7 +71,7 @@ function drawGUIQuickReaction() {
 	textAlign(CENTER, CENTER);
 	textStyle(BOLDITALIC);
 	textSize(48);
-	text("Quick Reactions", width/6+10, height/8 + 10);
+	text("Emergency Stop", width/6+10, height/8 + 10);
 
 
 	// background rectangle
